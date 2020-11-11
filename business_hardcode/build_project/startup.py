@@ -11,6 +11,9 @@ args = parser.parse_args()
 executor_id = args.executor_id[0]  # 当前执行器id
 root_path = os.getcwd()
 cur_executor_path = root_path + "/" + "run" + "/" + str(executor_id)
+repo_path = None
+repo_path_path = None
+docker_registry_path = None
 # 加载数据
 startup_data = None
 docker_registry_data = None
@@ -46,7 +49,9 @@ def load_startup_data():
     with open(cur_executor_path + "/" + "data_data.json") as f:
         global startup_data
         startup_data = json.loads(f.read())
-    with open(root_path + "/" + "data_data" + "/" + "docker_registry.json") as f:
+    global docker_registry_path
+    docker_registry_path = root_path + "/" + "data_data" + "/" + "docker_registry.json"
+    with open(docker_registry_path) as f:
         global docker_registry_data
         docker_registry_data = json.loads(f.read())
     with open(root_path + "/" + "data_data" + "/" + "git_server.json") as f:
@@ -59,6 +64,10 @@ def load_startup_data():
     execute_shell("mkdir -p " + dependency_path)
     global business_hyper_fusion_path
     business_hyper_fusion_path = root_path + "/" + "business_hyper_fusion" + "/" + project_program_language
+    global repo_path
+    repo_path = startup_data["repo_path"]
+    global repo_path_path
+    repo_path_path = (repo_path[repo_path.find("//") + 2:]).replace(".", "_")  # 仓库目录
 
 
 def load_project_source_code():
@@ -74,9 +83,7 @@ def load_project_source_code():
     # 判断docker是否有安装
     # 创建目录
     code_path = root_path + "/" + "cache" + "/" + "code"  # 源码目录
-    repo_path = startup_data["repo_path"]
     branches = startup_data["branches"]
-    repo_path_path = (repo_path[repo_path.find("//") + 2:]).replace(".", "_")  # 仓库目录
     branches_path = "branches" + "/" + branches
     global finally_project_code_path
     finally_project_code_path = code_path + "/" + repo_path_path + "/" + branches_path + "/" + "source"
@@ -122,12 +129,36 @@ def build_project():
 
 
 def build_docker():
+    # 生成docker登录密码文件
+    docker_registry_password_path = docker_registry_path + "_password"
+    if not os.path.exists(docker_registry_password_path):
+        with open(docker_registry_password_path, "w") as f:
+            f.write(docker_registry_data["password"])
     do_build_docker_path = business_hyper_fusion_path + "/" + "do_build_docker.sh"
+    build_docker_sh_path = business_hyper_fusion_path + "/" + "build_docker.sh"
+    # 加载创建docker启动命令并创建docker构建docker
     with open(do_build_docker_path)as f:
         do_build_docker_sh_template = f.read()
+        # 加载构建镜像脚本
+        with open(build_docker_sh_path)as build_docker_sh_file:
+            build_docker_sh_template = ""
+            for item in build_docker_sh_file.readlines():
+                build_docker_sh_template += item.strip() + " && "
+            build_docker_sh_template = build_docker_sh_template[:-4]
+            registry_url = docker_registry_data["registry_url"]
+            registry_username = docker_registry_data["username"]
+            build_docker_sh = build_docker_sh_template.format(**{
+                "registry_url": registry_url,
+                "registry_username": registry_username,
+                "image_id": registry_url + "/tristan/" + repo_path_path + ":" + executor_id,
+            })
+            out_log = execute_shell(build_docker_sh, False)
+            print(out_log.replace(registry_username, "xxx"))
+
         do_build_docker_sh = do_build_docker_sh_template.format(**{
             "execute_id": executor_id,
             "finally_project_code_path": finally_project_code_path,
+            "docker_registry_password_path": docker_registry_password_path,
             "build_docker_sh": "pwd",
         })
         execute_shell(do_build_docker_sh)

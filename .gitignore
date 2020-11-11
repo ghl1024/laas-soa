@@ -142,3 +142,4 @@ dmypy.json
 configs/application.yml
 business_hardcode/build_project/local_update_datetime_record
 business_hardcode/build_project/data_data
+*.json

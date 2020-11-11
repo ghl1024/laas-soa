@@ -55,9 +55,9 @@ dependency_lib通过放置缓存的依赖库文件、远程依赖库配置
         data_data:
         	git_server.json
 			docker_registry.json
-			docker_registry_password.txt
+			docker_registry_password
 		cache
-			dependency_lib
+			dependency
 				java
 				nodejs
 			code

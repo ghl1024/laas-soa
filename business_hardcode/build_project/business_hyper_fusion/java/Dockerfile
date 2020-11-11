@@ -1,8 +1,8 @@
-FROM registry-vpc.cn-shenzhen.aliyuncs.com/xxx/base_image-master:2790_201911271640
+FROM registry.wjh.com/registry/openjdk:8-alpine
 ADD target/*.jar app.jar
-ADD startup.sh startup.sh
 RUN bash -c 'touch app.jar'
+ADD startup.sh startup.sh
 RUN chmod 777 startup.sh
-ARG IMAGE_PROJECT_TAG
-ENV SW_AGENT_NAME ${IMAGE_PROJECT_TAG}
+ADD  Shanghai  /etc/timezone
+RUN  mkdir -p /data/servicesLog/logs
 ENTRYPOINT ["./startup.sh"]

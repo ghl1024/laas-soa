@@ -1,1 +1,1 @@
-java /app.jar
+java -Djava.security.egd=file:/dev/./urandom -Dspring.output.ansi.enabled=NEVER -jar /app.jar
