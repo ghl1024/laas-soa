@@ -145,37 +145,29 @@ def build_docker():
     if not os.path.exists(docker_registry_password_path):
         with open(docker_registry_password_path, "w") as f:
             f.write(docker_registry_data["password"])
-    do_build_docker_path = business_hyper_fusion_path + "/" + "do_build_docker.sh"
     build_docker_sh_path = business_hyper_fusion_path + "/" + "build_docker.sh"
-    # 加载创建docker启动命令并创建docker构建docker
-    with open(do_build_docker_path)as f:
-        do_build_docker_sh_template = f.read().replace("\r", "")
-        # 加载构建镜像脚本
-        with open(build_docker_sh_path)as build_docker_sh_file:
-            build_docker_sh_template = ""
-            for item in build_docker_sh_file.readlines():
-                build_docker_sh_template += item.strip().replace("\n", "").replace("\r", "") + " && "
-            build_docker_sh_template = build_docker_sh_template[:-4]
-            registry_url = docker_registry_data["registry_url"]
-            registry_username = docker_registry_data["username"]
-            image_id = registry_url + "/tristan/" + \
-                       repo_path_path[repo_path_path.find("/") + 1:].replace("/", "_") + ":" + str(executor_id)
-            build_docker_sh = build_docker_sh_template.format(**{
-                "registry_url": registry_url,
-                "registry_username": registry_username,
-                "image_id": image_id,
-            })
-            # out_log = execute_shell(do_buil, False)
-            # print(out_log.replace(registry_username, "xxx"))
-
-        do_build_docker_sh = do_build_docker_sh_template.format(**{
-            "execute_id": executor_id,
+    # 加载构建镜像脚本
+    with open(build_docker_sh_path)as build_docker_sh_file:
+        build_docker_sh_template = ""
+        for item in build_docker_sh_file.readlines():
+            build_docker_sh_template += item.strip().replace("\n", "").replace("\r", "") + " && "
+        build_docker_sh_template = build_docker_sh_template[:-4]
+        registry_url = docker_registry_data["registry_url"]
+        registry_username = docker_registry_data["username"]
+        image_id = registry_url + "/tristan/" + \
+                   repo_path_path[repo_path_path.find("/") + 1:].replace("/", "_") + ":" + str(executor_id)
+        project_dockerfile_path = finally_project_code_path + "/" + "Dockerfile"
+        dockerfile_path = business_hyper_fusion_path + "/" + "Dockerfile"
+        if not os.path.exists(project_dockerfile_path):
+            execute_shell("cp " + dockerfile_path + " " + project_dockerfile_path)
+        build_docker_sh = build_docker_sh_template.format(**{
+            "registry_url": registry_url,
+            "registry_username": registry_username,
             "finally_project_code_path": finally_project_code_path,
-            "docker_registry_password_path": docker_registry_password_path,
-            "build_docker_sh": "pwd",
+            "image_id": image_id,
         })
-        out_log = execute_shell(do_build_docker_sh)
-        print(out_log.replace(registry_username, "xxx"))
+    out_log = execute_shell(build_docker_sh)
+    print(out_log.replace(registry_username, "xxx"))
 
 
 def execute_business():
