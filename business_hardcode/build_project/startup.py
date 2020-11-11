@@ -77,6 +77,7 @@ def load_project_source_code():
     finally_project_code_path = code_path + "/" + repo_path_path + "/" + branches_path + "/" + "source"
     finally_project_build_path = code_path + "/" + repo_path_path + "/" + branches_path + "/" + "build"
     execute_shell("mkdir -p " + finally_project_code_path)
+    execute_shell("mkdir -p " + finally_project_build_path + " && chmod 777 " + finally_project_build_path)
     # 项目路径目录
     username = git_server_data["robot_username"]
     password = git_server_data["robot_password"]
@@ -101,28 +102,26 @@ def load_project_source_code():
 
 def load_business():
     project_program_language = startup_data["program_language"]
+    # 依赖库
+    dependency_path = root_path + "/" + "cache" + "/" + "dependency" + "/" + project_program_language
+    execute_shell("mkdir - p " + dependency_path)
     global business_hyper_fusion_path
     business_hyper_fusion_path = root_path + "/" + "business_hyper_fusion" + "/" + project_program_language
+    execute_shell("chmod +x " + business_hyper_fusion_path)
     do_build_project_path = business_hyper_fusion_path + "/" + "do_build_project.sh"
     with open(do_build_project_path) as f:
-        build_project_path_text = f.read()
+        build_project_sh_template = f.read()
         build_project_sh_path = business_hyper_fusion_path + "/" + "build_project.sh"
-
-        build_project_sh_template = """
-        docker run -it \
-          --name=exe1cute_business_1_{execute_id} \
-          -v /data/tristan/1/cache/java:/root/.m2 \
-          -v {finally_project_code_path}:/source_code  \
-          -v {finally_project_build_path}:/source_code/target   \
-          maven:3-alpine {build_project_sh_path}
-        """
+        with open(build_project_sh_path)as build_project_sh_file:
+            build_project_sh_lines = build_project_sh_file.readlines()
+        build_project_sh = " && ".join(build_project_sh_lines)
         build_project_sh = build_project_sh_template.format(**{
             "execute_id": executor_id,
             "finally_project_code_path": finally_project_code_path,
             "finally_project_build_path": finally_project_build_path,
-            "build_project_sh_path": build_project_sh_path,
+            "build_project_sh": build_project_sh,
         })
-        execute_shell("chmod +x " + build_project_sh_path)
+        execute_shell("chmod +x " + business_hyper_fusion_path)
         execute_shell(build_project_sh)
 
 

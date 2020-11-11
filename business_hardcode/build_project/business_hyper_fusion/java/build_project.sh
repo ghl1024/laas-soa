@@ -1,2 +1,1 @@
-cd /source_code
-mvn clean package -DskipTests
+cd /source_code && mvn clean package  -DskipTests

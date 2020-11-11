@@ -66,11 +66,9 @@ dependency_lib通过放置缓存的依赖库文件、远程依赖库配置
                         branches
                             <分支名>
                                 source
-                                build
                         tags
                             <标签名>
                                 source
-                                build
 		run
 			<执行器id>
 				data_data.json
@@ -82,7 +80,7 @@ dependency_lib通过放置缓存的依赖库文件、远程依赖库配置
 	/<执行器根目录>/<业务id>/run/<执行器id>/<源码仓库地址转目录>/<项目访问后部分目录>
 ```
 
-cache中保存该仓库的构建缓存数据, source中存源码, build中存构建脚本文件, 使用version文件记录构建脚本文件的版本, 当版本一致时则不拉取最新构建脚本, 反之则拉取最新构建脚本
+cache中保存该仓库的构建缓存数据, source中存源码, 使用version文件记录构建脚本文件的版本, 当版本一致时则不拉取最新构建脚本, 反之则拉取最新构建脚本
 
 拉取源码
 
