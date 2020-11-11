@@ -259,3 +259,28 @@ class ShellHandler:
             sherr.pop(0)
 
         return shin, shout, sherr
+
+
+class RemoteShell(object):
+    def __init__(self, ip, port, username, password):
+        tran = paramiko.Transport(sock=(ip, int(port)))
+        tran.connect(username=username, password=password)
+        self.channel = tran.open_session()
+        self.channel.get_pty()
+        self.channel.invoke_shell()
+
+    def __del__(self):
+        self.channel.close()
+
+    def exec(self, shell, output_callback=None):
+        shell = shell.strip()
+        self.channel.send(shell + "\n")
+        result = ''
+        recv_size = int(65535)
+        while True:
+            res = str(self.channel.recv(recv_size).decode('utf8'))
+            log(res)
+            result += res
+            if res.endswith(']# ') or res.endswith(']$ '):
+                break
+        return result
