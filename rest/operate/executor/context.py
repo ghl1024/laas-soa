@@ -258,6 +258,9 @@ class ShellHandler:
         if sherr and cmd in sherr[0]:
             sherr.pop(0)
 
+        log("".join(sherr))
+        log("".join(shout))
+
         return shin, shout, sherr
 
 
@@ -272,7 +275,7 @@ class RemoteShell(object):
     def __del__(self):
         self.channel.close()
 
-    def exec(self, shell, output_callback=None):
+    def execute(self, shell, output_callback=None):
         shell = shell.strip()
         self.channel.send(shell + "\n")
         result = ''

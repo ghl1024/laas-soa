@@ -38,7 +38,6 @@ def build_project(executor_data_id, data_data_data):
         """
         # 查询执行器
         host_build = context.select_data_by_data_id__data_data_id(15, 1)[0]  # 查询服务器连接信息
-        context.log('host_build: ' + str(host_build))
         # 获取最新版本的数据, 保存数据到本地, 同步最新版本的数据到执行器目录
         latest_update_datetime_record = ""
         """
@@ -99,8 +98,10 @@ EOF
         # 好处是什么? 目录都都可以在自己的目录, 坏处是什么, 需要拷贝文件
         command = "cd %s && python startup.py -ei %s" % (remote_executor_root_path, executor_data_id)
         context.RemoteShell(host_build["ip"], host_build["port"], host_build["username"],
-                            host_build["password"]).exec(command)
+                            host_build["password"]).execute(command)
+        # context.ShellHandler(host_build["ip"], host_build["port"], host_build["username"],host_build["password"]).execute(command)
 
+        print("=" * 200)
     except Exception as e:
         traceback.print_exc()
         context.log(str(e))

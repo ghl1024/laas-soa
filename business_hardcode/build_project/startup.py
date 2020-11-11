@@ -104,7 +104,7 @@ def load_business():
     project_program_language = startup_data["program_language"]
     # 依赖库
     dependency_path = root_path + "/" + "cache" + "/" + "dependency" + "/" + project_program_language
-    execute_shell("mkdir - p " + dependency_path)
+    execute_shell("mkdir -p " + dependency_path)
     global business_hyper_fusion_path
     business_hyper_fusion_path = root_path + "/" + "business_hyper_fusion" + "/" + project_program_language
     execute_shell("chmod +x " + business_hyper_fusion_path)
@@ -114,15 +114,15 @@ def load_business():
         build_project_sh_path = business_hyper_fusion_path + "/" + "build_project.sh"
         with open(build_project_sh_path)as build_project_sh_file:
             build_project_sh_lines = build_project_sh_file.readlines()
-        build_project_sh = " && ".join(build_project_sh_lines)
-        build_project_sh = build_project_sh_template.format(**{
+        build_project_sh = " && ".join(build_project_sh_lines).strip()
+        do_build_project_sh = build_project_sh_template.format(**{
             "execute_id": executor_id,
             "finally_project_code_path": finally_project_code_path,
             "finally_project_build_path": finally_project_build_path,
             "build_project_sh": build_project_sh,
         })
         execute_shell("chmod +x " + business_hyper_fusion_path)
-        execute_shell(build_project_sh)
+        execute_shell(do_build_project_sh)
 
 
 def execute_business():
