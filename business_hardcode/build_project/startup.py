@@ -55,7 +55,9 @@ def load_project_source_code():
     # 判断git指令是否有安装
     out_log = os.popen("git").read()
     if "command not found" in out_log:
+        print(out_log)
         out_log = os.popen("yum install -y git").read()
+        print(out_log)
     # 判断docker是否有安装
     # 创建目录
     code_path = root_path + "/" + "cache" + "/" + "code"  # 源码目录
@@ -65,18 +67,19 @@ def load_project_source_code():
     branches_path = "branches" + "/" + branches + "/" + "source"
     finally_source_code_path = code_path + "/" + repo_path_path + "/" + branches_path
     out_log = os.popen("mkdir -p " + finally_source_code_path).read()
+    print(out_log)
     # 项目路径目录
     username = git_server_data["robot_username"]
     password = git_server_data["robot_password"]
-    auth_username_password = username + ":" + password
+    auth_username_password = username + ":" + password + "@"
     repo_path_list = list(repo_path)
-    repo_path_list.insert(repo_path.find("//") + 2, auth_username_password + "@")
+    repo_path_list.insert(repo_path.find("//") + 2, auth_username_password)
     command_repo_path = "".join(repo_path_list) + ".git"
     # git clone http://<username>:<password>@git_server_url/repo_path.git -b <分支名> --single--branch
     command = "git clone " + " -b " + branches + " --single-branch " + command_repo_path + " ./"
     switch_path_command = "cd " + finally_source_code_path + " && "
     command = switch_path_command + command
-    print(command)
+    print(command.replace(auth_username_password, ""))
     out_log = os.popen(command).read()
     print(out_log)
 

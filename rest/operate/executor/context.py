@@ -34,6 +34,7 @@ def log(log_content, executor_data_id=None):
     """
     if not executor_data_id:
         executor_data_id = global_data.executor_data_id
+    log_content = str(log_content)
     logging.warning("execute_data_id: %s log_content: %s" % (executor_data_id, log_content))
     # TODO 持久化日志内容
 

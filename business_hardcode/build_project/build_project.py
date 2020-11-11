@@ -102,12 +102,10 @@ EOF
         # context.log(execute_result)
         shin, shout, sherr = context.ShellHandler(host_build["ip"], host_build["port"], host_build["username"],
                                                   host_build["password"]).execute(command)
-        print(shin)
-        print("=" * 200)
-        for item in shout:
-            print(item)
-        print("=" * 200)
-        print(sherr)
+        if len(sherr) > 0:
+            context.log("".join(sherr))
+        else:
+            context.log("".join(shout))
     except Exception as e:
         traceback.print_exc()
         context.log(str(e))
