@@ -1,1 +1,8 @@
-docker run -it --name execute_business_1_1 -v /data:实际目录 docker  git配置名称/仓库目录/package_to_docker.sh
+docker run -d \
+  --name=execute_business_1_{execute_id}_image \
+  -v {finally_project_code_path}/target:target  \
+  docker /bin/bash -c '{build_docker_sh}'
+
+docker logs -f execute_business_1_{execute_id}_image
+
+docker rm execute_business_1_{execute_id}_image

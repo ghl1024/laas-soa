@@ -17,7 +17,6 @@ docker_registry_data = None
 git_server_data = None
 # 加载源码
 finally_project_code_path = None
-finally_project_build_path = None
 # 加载业务脚本, 将部分数据替换到业务脚本中, 执行业务脚本
 business_hyper_fusion_path = None
 """
@@ -53,6 +52,13 @@ def load_startup_data():
     with open(root_path + "/" + "data_data" + "/" + "git_server.json") as f:
         global git_server_data
         git_server_data = json.loads(f.read())
+    # 顺便初始化一些数据
+    project_program_language = startup_data["program_language"]
+    # 依赖库
+    dependency_path = root_path + "/" + "cache" + "/" + "dependency" + "/" + project_program_language
+    execute_shell("mkdir -p " + dependency_path)
+    global business_hyper_fusion_path
+    business_hyper_fusion_path = root_path + "/" + "business_hyper_fusion" + "/" + project_program_language
 
 
 def load_project_source_code():
@@ -73,11 +79,8 @@ def load_project_source_code():
     repo_path_path = (repo_path[repo_path.find("//") + 2:]).replace(".", "_")  # 仓库目录
     branches_path = "branches" + "/" + branches
     global finally_project_code_path
-    global finally_project_build_path
     finally_project_code_path = code_path + "/" + repo_path_path + "/" + branches_path + "/" + "source"
-    finally_project_build_path = code_path + "/" + repo_path_path + "/" + branches_path + "/" + "build"
     execute_shell("mkdir -p " + finally_project_code_path)
-    execute_shell("mkdir -p " + finally_project_build_path + " && chmod 777 " + finally_project_build_path)
     # 项目路径目录
     username = git_server_data["robot_username"]
     password = git_server_data["robot_password"]
@@ -100,13 +103,7 @@ def load_project_source_code():
     execute_shell(command)
 
 
-def load_business():
-    project_program_language = startup_data["program_language"]
-    # 依赖库
-    dependency_path = root_path + "/" + "cache" + "/" + "dependency" + "/" + project_program_language
-    execute_shell("mkdir -p " + dependency_path)
-    global business_hyper_fusion_path
-    business_hyper_fusion_path = root_path + "/" + "business_hyper_fusion" + "/" + project_program_language
+def build_project():
     execute_shell("chmod +x " + business_hyper_fusion_path)
     do_build_project_path = business_hyper_fusion_path + "/" + "do_build_project.sh"
     with open(do_build_project_path) as f:
@@ -118,26 +115,30 @@ def load_business():
         do_build_project_sh = build_project_sh_template.format(**{
             "execute_id": executor_id,
             "finally_project_code_path": finally_project_code_path,
-            "finally_project_build_path": finally_project_build_path,
             "build_project_sh": build_project_sh,
         })
         execute_shell("chmod +x " + business_hyper_fusion_path)
         execute_shell(do_build_project_sh)
 
 
+def build_docker():
+    do_build_docker_path = business_hyper_fusion_path + "/" + "do_build_docker.sh"
+    with open(do_build_docker_path)as f:
+        do_build_docker_sh_template = f.read()
+        do_build_docker_sh = do_build_docker_sh_template.format(**{
+            "execute_id": executor_id,
+            "finally_project_code_path": finally_project_code_path,
+            "build_docker_sh": "pwd",
+        })
+        execute_shell(do_build_docker_sh)
+
+
 def execute_business():
-    # do_build_project
-    # build_project
-    # clean_build_project
-    # startup
-    # Dockerfile
-    # do_build_docker
-    # build_docker
-    # clean_build_docker
-    pass
+    # build_project()
+    build_docker()
 
 
 if __name__ == '__main__':
     load_startup_data()
     load_project_source_code()
-    load_business()
+    execute_business()
