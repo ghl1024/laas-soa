@@ -76,8 +76,14 @@ def load_project_source_code():
     repo_path_list.insert(repo_path.find("//") + 2, auth_username_password)
     command_repo_path = "".join(repo_path_list) + ".git"
     # git clone http://<username>:<password>@git_server_url/repo_path.git -b <分支名> --single--branch
-    command = "git clone " + " -b " + branches + " --single-branch " + command_repo_path + " ./"
     switch_path_command = "cd " + finally_source_code_path + " && "
+    # 如果仓库中有.git文件夹的话则进行增量更新, 反之进行全量拉取
+    git_metadata_dir_path = finally_source_code_path + "/" + '.git'
+    if os.path.exists(git_metadata_dir_path) or os.path.isdir(git_metadata_dir_path):  # 如果仓库中有.git文件夹的话则进行增量更新
+        command = "git pull origin"
+    else:  # 全量拉取
+        command = "git clone " + " -b " + branches + " --single-branch " + command_repo_path + " ./"
+
     command = switch_path_command + command
     print(command.replace(auth_username_password, ""))
     out_log = os.popen(command).read()

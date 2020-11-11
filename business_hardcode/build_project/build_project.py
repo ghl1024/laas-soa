@@ -98,17 +98,8 @@ EOF
         # 是否应该考虑将共享文件拷贝到自己的区域???
         # 好处是什么? 目录都都可以在自己的目录, 坏处是什么, 需要拷贝文件
         command = "cd %s && python startup.py -ei %s" % (remote_executor_root_path, executor_data_id)
-        # execute_result = context.execute_remote_command(host_build, command)
-        # context.log(execute_result)
-        # shin, shout, sherr = context.ShellHandler(host_build["ip"], host_build["port"], host_build["username"],
-        #                                           host_build["password"]).execute(command)
-        # if len(sherr) > 0:
-        #     context.log("".join(sherr))
-        # else:
-        #     context.log("".join(shout))
-        result = context.RemoteShell(host_build["ip"], host_build["port"], host_build["username"],
-                                     host_build["password"]).exec(command)
-        print("=" * 200)
+        context.RemoteShell(host_build["ip"], host_build["port"], host_build["username"],
+                            host_build["password"]).exec(command)
 
     except Exception as e:
         traceback.print_exc()
