@@ -125,7 +125,13 @@ def build_project():
     execute_shell("chmod +x " + business_hyper_fusion_path)
     do_build_project_path = business_hyper_fusion_path + "/" + "do_build_project.sh"
     with open(do_build_project_path) as f:
-        build_project_sh_template = f.read()
+        build_project_sh_template = ""
+        for item in f.readlines():
+            item = item.strip().replace("\n", "").replace("\r", "")
+            if "" == item:
+                continue
+            build_project_sh_template += item + " && "
+        build_project_sh_template = build_project_sh_template[:-4]
         build_project_sh_path = business_hyper_fusion_path + "/" + "build_project.sh"
         with open(build_project_sh_path)as build_project_sh_file:
             build_project_sh_lines = build_project_sh_file.readlines()
@@ -151,7 +157,7 @@ def build_docker():
         build_docker_sh_template = ""
         for item in build_docker_sh_file.readlines():
             build_docker_sh_template += item.strip().replace("\n", "").replace("\r", "") + " && "
-        build_docker_sh_template = build_docker_sh_template[:-4]
+        build_docker_sh_template = build_docker_sh_template[:-8]
         registry_url = docker_registry_data["registry_url"]
         registry_username = docker_registry_data["username"]
         image_id = registry_url + "/tristan/" + \
@@ -161,17 +167,18 @@ def build_docker():
         if not os.path.exists(project_dockerfile_path):
             execute_shell("cp " + dockerfile_path + " " + project_dockerfile_path)
         build_docker_sh = build_docker_sh_template.format(**{
+            "docker_registry_password_path": docker_registry_password_path,
             "registry_url": registry_url,
             "registry_username": registry_username,
             "finally_project_code_path": finally_project_code_path,
             "image_id": image_id,
         })
-    out_log = execute_shell(build_docker_sh)
+    out_log = execute_shell(build_docker_sh, False)
     print(out_log.replace(registry_username, "xxx"))
 
 
 def execute_business():
-    # build_project()
+    build_project()
     build_docker()
 
 
