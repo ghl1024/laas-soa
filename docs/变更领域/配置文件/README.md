@@ -1,3 +1,9 @@
+# 数据: 配置项目数据
+
+名称
+
+url
+
 # 数据: 配置项目部署环境数据
 
 ​	有哪些项目
@@ -5,8 +11,7 @@
 ​		项目名称	项目路径	项目环境(默认dev/stage/pre/prod)
 
 ```
-name
-url
+project_id
 enviroments: dev,stage,pre,prod
 ```
 
@@ -23,8 +28,7 @@ enviroments: dev,stage,pre,prod
 ​		合并到其他环境
 
 ```
-name
-url
+id
 enviroment
 path
 content
