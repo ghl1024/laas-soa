@@ -46,7 +46,8 @@ def load_startup_data():
     """
     {'id': 11, 'git_server': '1', 'project_name': '仓库系统', 'branches': 'master', 'tags': '', 
     'program_language': 'java', 'docker_registry_id': '1', 'update_datetime': {'$date': 1605035741000}, 
-    'create_datetime': {'$date': 1605035741000}, 'repo_path': 'http://git.xxx.com/wms/wms_service'}
+    'create_datetime': {'$date': 1605035741000}, 'repo_path': 'http://git.xxx.com/wms/wms_service'},
+     'module_path': 'wms-service/wms-server'}
     """
     with open(cur_executor_path + "/" + "data_data.json") as f:
         global startup_data
@@ -75,7 +76,7 @@ def load_startup_data():
     branches = startup_data["branches"]
     global finally_project_code_path
     code_path = root_path + "/" + "cache" + "/" + "code"  # 源码目录
-    finally_project_code_path = code_path + "/" + repo_path_path + "/" + "branches" + "/" + branches + "/" + "source"
+    finally_project_code_path = code_path + "/" + repo_path_path + "/" + "branches" + "/" + branches
 
 
 def load_project_source_code():
@@ -106,7 +107,7 @@ def load_project_source_code():
     if os.path.exists(git_metadata_dir_path) or os.path.isdir(git_metadata_dir_path):  # 如果仓库中有.git文件夹的话则进行增量更新
         command = "git pull origin"
     else:  # 全量拉取
-        # TODO 清理全量拉取目录
+        # TODO 清理全量拉取目录???
         command = "git clone " + " -b " + branches + " --single-branch " + command_repo_path + " ./"
 
     command = switch_path_command + command
@@ -162,7 +163,9 @@ def build_docker():
         registry_username = docker_registry_data["username"]
         image_id = registry_url + "/tristan/" + \
                    repo_path_path[repo_path_path.find("/") + 1:].replace("/", "_") + ":" + str(executor_id)
-        project_dockerfile_path = finally_project_code_path + "/" + "Dockerfile"
+
+        finally_project_build_path = finally_project_code_path
+        project_dockerfile_path = finally_project_build_path + "/" + "Dockerfile"
         dockerfile_path = business_hyper_fusion_path + "/" + "Dockerfile"
         if not os.path.exists(project_dockerfile_path):
             execute_shell("cp " + dockerfile_path + " " + project_dockerfile_path)
@@ -170,7 +173,7 @@ def build_docker():
             "docker_registry_password_path": docker_registry_password_path,
             "registry_url": registry_url,
             "registry_username": registry_username,
-            "finally_project_code_path": finally_project_code_path,
+            "finally_project_build_path": finally_project_build_path,
             "image_id": image_id,
         })
     out_log = execute_shell(build_docker_sh, False)
