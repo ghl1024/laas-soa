@@ -31,7 +31,8 @@ business_hyper_fusion_path = None
 
 
 def execute_shell(command, is_print=True):
-    print(command)
+    if is_print:
+        print(command)
     out_log = os.popen(command).read()
     if is_print:
         print(out_log)
@@ -107,12 +108,13 @@ def load_project_source_code():
     if os.path.exists(git_metadata_dir_path) or os.path.isdir(git_metadata_dir_path):  # 如果仓库中有.git文件夹的话则进行增量更新
         command = "git pull origin"
     else:  # 全量拉取
-        # TODO 清理全量拉取目录???
+        # TODO 清理目录???
         command = "git clone " + " -b " + branches + " --single-branch " + command_repo_path + " ./"
 
     command = switch_path_command + command
     print(command.replace(auth_username_password, ""))
-    execute_shell(command)
+    out_log = execute_shell(command, False)
+    print(out_log)
 
 
 def build_project():
@@ -154,34 +156,40 @@ def build_docker():
             f.write(docker_registry_data["password"])
     build_docker_sh_path = business_hyper_fusion_path + "/" + "build_docker.sh"
     # 加载构建镜像脚本
+    build_docker_sh_template = ""
     with open(build_docker_sh_path)as build_docker_sh_file:
-        build_docker_sh_template = ""
         for item in build_docker_sh_file.readlines():
             build_docker_sh_template += item.strip().replace("\n", "").replace("\r", "") + " && "
-        build_docker_sh_template = build_docker_sh_template[:-8]
-        registry_url = docker_registry_data["registry_url"]
-        registry_username = docker_registry_data["username"]
-        image_id = registry_url + "/tristan/" + \
-                   repo_path_path[repo_path_path.find("/") + 1:].replace("/", "_") + ":" + str(executor_id)
+    build_docker_sh_template = build_docker_sh_template[:-4]
+    registry_url = docker_registry_data["registry_url"]
+    registry_username = docker_registry_data["username"]
+    image_id = registry_url + "/dev/"
+    image_id += repo_path_path[repo_path_path.find("/") + 1:].replace("/", "_") + ":" + str(executor_id)
+    print("image_id: " + image_id)
+    finally_project_build_path = finally_project_code_path + "/" + startup_data["module_path"]
 
-        finally_project_build_path = finally_project_code_path
-        project_dockerfile_path = finally_project_build_path + "/" + "Dockerfile"
-        dockerfile_path = business_hyper_fusion_path + "/" + "Dockerfile"
-        if not os.path.exists(project_dockerfile_path):
-            execute_shell("cp " + dockerfile_path + " " + project_dockerfile_path)
-        build_docker_sh = build_docker_sh_template.format(**{
-            "docker_registry_password_path": docker_registry_password_path,
-            "registry_url": registry_url,
-            "registry_username": registry_username,
-            "finally_project_build_path": finally_project_build_path,
-            "image_id": image_id,
-        })
-    out_log = execute_shell(build_docker_sh, False)
+    def clone_build_file(build_file_name_list):
+        for build_file_name in build_file_name_list:
+            source_path = business_hyper_fusion_path + "/" + build_file_name
+            target_path = finally_project_build_path + "/" + build_file_name
+            execute_shell("cp " + source_path + " " + target_path)
+
+    clone_build_file(["Dockerfile", "startup.sh"])
+    print("build_docker_sh_template: " + build_docker_sh_template)
+    build_docker_sh = build_docker_sh_template.format(**{
+        "docker_registry_password_path": docker_registry_password_path,
+        "registry_url": registry_url,
+        "registry_username": registry_username,
+        "finally_project_build_path": finally_project_build_path,
+        "docker_image_id": str(image_id),
+    })
+
+    out_log = execute_shell(build_docker_sh + "\n", False)
     print(out_log.replace(registry_username, "xxx"))
 
 
 def execute_business():
-    build_project()
+    # build_project()
     build_docker()
 
 
