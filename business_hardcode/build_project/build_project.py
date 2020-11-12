@@ -6,8 +6,10 @@
     源码仓库信息
     项目配置信息
 """
+import datetime
 import json
 import os
+import time
 import traceback
 
 from rest.operate.executor import context
@@ -30,6 +32,8 @@ def build_project(executor_data_id, data_data_data):
     """
     # 记录全局数据
     context.global_data.executor_data_id = executor_data_id
+    startup_timestamp = int(time.time())
+    context.log("启动时间: " + str(datetime.datetime.now()))
     try:
         """
         {'id': 11, 'git_server': '1', 'project_name': '仓库系统', 'branches': 'master', 'tags': '', 
@@ -105,3 +109,5 @@ EOF
     except Exception as e:
         traceback.print_exc()
         context.log(str(e))
+    context.log("结束时间: " + str(datetime.datetime.now()))
+    context.log("总耗时: %s 秒钟" + str(int((int(time.time()) - startup_timestamp) / 1000)))

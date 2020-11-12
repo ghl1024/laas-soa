@@ -189,7 +189,7 @@ def build_docker():
 
 
 def execute_business():
-    # build_project()
+    build_project()
     build_docker()
 
 
