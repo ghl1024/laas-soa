@@ -13,7 +13,7 @@ app = Blueprint('operate_cmdb_struct', __name__,
 def select():
     request_data = form.check(["did"])
     return json.dumps(mymysql.execute("""
-                select id, code, meaning, reference_type
+                select id, code, meaning, reference_type, is_open_data
                 from designer_data_struct
                 where did = %(did)s
     """, request_data))
@@ -29,14 +29,14 @@ def insert():
         request_data)
 
     return json.dumps(mymysql.execute("""
-                insert into designer_data_struct(did, code, meaning, reference_type ) 
-                values (%(did)s, %(code)s, %(meaning)s, %(reference_type)s)
+                insert into designer_data_struct(did, code, meaning, reference_type, is_open_data ) 
+                values (%(did)s, %(code)s, %(meaning)s, %(reference_type)s, %(is_open_data)s)
     """, request_data))
 
 
 @app.route('/update', methods=['POST'])
 def update():
-    request_data = form.check(["did", "code", "meaning", "reference_type"])
+    request_data = form.check(["did", "code", "meaning", "reference_type", "is_open_data"])
     code = request_data['code']
     # update column to data data
     mymysql.execute(
@@ -45,7 +45,10 @@ def update():
         request_data)
     return json.dumps(mymysql.execute("""
                 update designer_data_struct 
-                set code = %(code)s ,meaning = %(meaning)s
+                set code = %(code)s 
+                    ,meaning = %(meaning)s 
+                    ,reference_type = %(reference_type)s 
+                    ,is_open_data = %(is_open_data)s
                 where id = %(id)s
     """, request_data))
 

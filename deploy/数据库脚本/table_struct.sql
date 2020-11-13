@@ -10,17 +10,19 @@ CREATE TABLE `designer_data_directory`
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_unicode_ci;
 
-CREATE TABLE `designer_data_struct`
+
+create table designer_data_struct
 (
-    `id`             int(11)                                 NOT NULL AUTO_INCREMENT,
-    `did`            int(11)                                 NOT NULL,
-    `code`           varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `meaning`        varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-    `reference_type` varchar(100) COLLATE utf8mb4_unicode_ci,
-    PRIMARY KEY (`id`)
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8mb4
-  COLLATE = utf8mb4_unicode_ci;
+    id             int auto_increment
+        primary key,
+    did            int               not null,
+    code           varchar(100)      not null,
+    meaning        varchar(100)      not null,
+    reference_type varchar(100)      null,
+    is_open_data   tinyint default 0 null comment '是否开放数据'
+);
+
+
 
 CREATE TABLE `designer_logic_directory`
 (
