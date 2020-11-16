@@ -16,5 +16,3 @@ agent
 distribution
 
 cmdb
-
-
