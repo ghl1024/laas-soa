@@ -12,7 +12,7 @@ app = Blueprint('native_cmdb_directory', __name__,
 
 @app.route('/select', methods=['POST'])
 def select():
-    request_data = form.check()
+    request_data = form.check(["is_open_data"])
     select_sql_keys = "id, pid, name"
     select_sql_where = ''
     params = {}
@@ -20,7 +20,10 @@ def select():
         select_sql_keys += ', description'
         select_sql_where = " and id = %(id)s "
         params['id'] = request_data["id"]
-    select_sql = 'select ' + select_sql_keys + ' from designer_data_directory where 1 = 1 ' + select_sql_where
+    is_open_data = request_data["is_open_data"]
+    if is_open_data:
+        select_sql_where += "  and exists(select 1 from designer_data_struct dds where dds.did = ddd.id and dds.is_open_data = 1)"
+    select_sql = 'select ' + select_sql_keys + ' from designer_data_directory ddd where 1 = 1 ' + select_sql_where
     return json.dumps(mymysql.execute(select_sql, params))
 
 
