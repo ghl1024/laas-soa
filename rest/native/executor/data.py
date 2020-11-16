@@ -13,10 +13,10 @@ from flask import Blueprint
 from business_hardcode.build_project import build_project
 from component import form
 from component import mymysql
-from rest.operate.executor import context
+from rest.native.executor import context
 
-app = Blueprint('operate_executor_execute', __name__,
-                url_prefix='/operate/executor/data')
+app = Blueprint('native_executor_execute', __name__,
+                url_prefix='/native/executor/data')
 
 business_hardcode_pool = {
     "1": build_project.build_project,

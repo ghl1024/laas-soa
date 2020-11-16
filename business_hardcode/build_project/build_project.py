@@ -12,7 +12,7 @@ import os
 import time
 import traceback
 
-from rest.operate.executor import context
+from rest.native.executor import context
 
 local_executor_root_path = os.path.join(os.getcwd(), "business_hardcode/build_project")
 remote_executor_root_path = "/data/tristan/1"  # 远程执行器根目录

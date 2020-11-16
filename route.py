@@ -1,11 +1,11 @@
 def init(app):
     from rest import ping
-    from rest.operate.business import data as operate_business_data
-    from rest.operate.business import directory as operate_business_directory
-    from rest.operate.cmdb import data as operate_cmdb_data
-    from rest.operate.cmdb import directory as operate_cmdb_directory
-    from rest.operate.cmdb import struct as operate_cmdb_struct
-    from rest.operate.executor import data as operate_executor_data
+    from rest.native.business import data as operate_business_data
+    from rest.native.business import directory as operate_business_directory
+    from rest.native.cmdb import data as operate_cmdb_data
+    from rest.native.cmdb import directory as operate_cmdb_directory
+    from rest.native.cmdb import struct as operate_cmdb_struct
+    from rest.native.executor import data as operate_executor_data
     from rest import agent
 
     # ################### 注册路由

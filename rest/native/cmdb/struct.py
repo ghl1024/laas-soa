@@ -5,8 +5,8 @@ from flask import Blueprint
 from component import form
 from component import mymysql
 
-app = Blueprint('operate_cmdb_struct', __name__,
-                url_prefix='/operate/cmdb/struct')
+app = Blueprint('native_cmdb_struct', __name__,
+                url_prefix='/native/cmdb/struct')
 
 
 @app.route('/select', methods=['POST'])

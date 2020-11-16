@@ -6,8 +6,8 @@ from component import form
 from component import mymysql
 from exception import MyServiceException
 
-app = Blueprint('operate_cmdb_directory', __name__,
-                url_prefix='/operate/cmdb/directory')
+app = Blueprint('native_cmdb_directory', __name__,
+                url_prefix='/native/cmdb/directory')
 
 
 @app.route('/select', methods=['POST'])

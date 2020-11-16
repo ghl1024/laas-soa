@@ -1,4 +1,4 @@
-from rest.operate.executor import context
+from rest.native.executor import context
 
 local_executor_root_path = r'D:\projects\github\laashub-soa\laas-soa\business_hardcode\build_project'
 remote_basic_dir = "/data/tristan/1"

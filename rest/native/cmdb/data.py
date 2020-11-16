@@ -5,10 +5,10 @@ from flask import Blueprint
 
 from component import form
 from component import mymysql
-from rest.operate.cmdb import struct
+from rest.native.cmdb import struct
 
-app = Blueprint('operate_cmdb_data', __name__,
-                url_prefix='/operate/cmdb/data')
+app = Blueprint('native_cmdb_data', __name__,
+                url_prefix='/native/cmdb/data')
 
 """
 request_standard = {

@@ -5,8 +5,8 @@ from flask import Blueprint
 from component import form
 from component import mymysql
 
-app = Blueprint('operate_business_data', __name__,
-                url_prefix='/operate/business/data')
+app = Blueprint('native_business_data', __name__,
+                url_prefix='/native/business/data')
 
 
 @app.route('/select', methods=['POST'])

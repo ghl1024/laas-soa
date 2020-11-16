@@ -7,7 +7,7 @@ import threading
 import paramiko
 
 from exception import MyServiceException
-from rest.operate.cmdb import data
+from rest.native.cmdb import data
 
 global_data = threading.local()
 """
