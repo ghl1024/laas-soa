@@ -32,6 +32,9 @@ resp_standard = {
 @app.route('/select', methods=['POST'])
 def select():
     request_data = form.check(['search'])
+    is_open_data = False
+    if request_data.__contains__('is_open_data'):
+        is_open_data = request_data["is_open_data"]
     search = request_data['search']
     did = search['did']
     if request_data.__contains__('page_current'):
@@ -84,7 +87,16 @@ def select():
     select_sql = 'select ' + select_sql_keys + ' from ' + designer_data_data_table_name + ' where 1 = 1 ' \
                  + select_sql_where + select_sql_page
     data = mymysql.execute(select_sql, select_value)
-    #
+
+    # 查寻开放数据列
+    open_data_codes = mymysql.execute("""
+        select code from designer_data_struct where did = %s and is_open_data=1
+        """ % did)
+    # 替换列表中开放数据列为引用key
+    for data_item in data:
+        for code_item in open_data_codes:
+            open_data_code = code_item["code"]
+            data_item[open_data_code] = "SOA数据引用key: %s__%s__%s" % (did, data_item["id"], open_data_code)
     return json.dumps({
         'page_total': page_total,
         'data': data,
