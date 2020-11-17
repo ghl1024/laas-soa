@@ -37,10 +37,13 @@ def insert():
 @app.route('/update', methods=['POST'])
 def update():
     request_data = form.check(["did", "code", "meaning", "reference_type", "is_open_data"])
+    old_code = request_data['code']
     code = request_data['code']
+    if request_data.__contains__("old_code"):
+        old_code = request_data['old_code']
     # update column to data data
     mymysql.execute(
-        'ALTER TABLE designer_data_data_%(did)s change ' + code + ' ' + code
+        'ALTER TABLE designer_data_data_%(did)s change ' + old_code + ' ' + code
         + ' VARCHAR(255) DEFAULT NULL COMMENT %(meaning)s;',
         request_data)
     return json.dumps(mymysql.execute("""

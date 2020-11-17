@@ -1,3 +1,5 @@
+![项目配置文件界面设计](./项目配置文件界面设计.png)
+
 # 数据模型设计
 
 ## 数据: 配置项目数据
@@ -59,14 +61,15 @@ content
 
 ## 项目配置文件(project_configuration_file)
 
-| 字段        | 类型        | 默认值 | 含义 | 关联模型            |
-| ----------- | ----------- | ------ | ---- | ------------------- |
-| project     | string      |        | 项目 | project             |
-| environment | string      |        | 环境 | project_environment |
-| path        | path_string |        | 路径 |                     |
-| content     | file_string |        | 内容 |                     |
+| 字段                | 类型        | 默认值 | 含义 | 关联模型            |
+| ------------------- | ----------- | ------ | ---- | ------------------- |
+| project_environment | string      |        | 环境 | project_environment |
+| path                | path_string |        | 路径 |                     |
+| content             | file_string |        | 内容 |                     |
 
 查询指定模型时会先查询关联模型, 关联模型之前会先进行排序
+
+查看历史版本
 
 # 案例数据
 
