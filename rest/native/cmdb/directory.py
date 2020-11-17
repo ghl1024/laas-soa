@@ -89,6 +89,13 @@ def update():
 @app.route('/delete', methods=['POST'])
 def delete():
     request_data = form.check(["id"])
+    # 删除该数据模型的模型结构字段
+    mymysql.execute(
+        """
+            delete from designer_data_struct
+            where did = %(id)s
+            """, request_data
+    )
 
     def get_children(_id):
         return mymysql.execute("""
@@ -116,6 +123,7 @@ def delete():
         delete_one_level(_id)
 
     do_delete(request_data["id"])
+
     return ""
 
 
