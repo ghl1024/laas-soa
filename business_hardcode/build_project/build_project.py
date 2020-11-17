@@ -110,4 +110,4 @@ EOF
         traceback.print_exc()
         context.log(str(e))
     context.log("结束时间: " + str(datetime.datetime.now()))
-    context.log("总耗时: %s 秒钟" + str(int((int(time.time()) - startup_timestamp) / 1000)))
+    context.log("总耗时: %s 秒钟" + str(int(time.time()) - startup_timestamp))
