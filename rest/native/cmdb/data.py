@@ -90,13 +90,21 @@ def select():
 
     # 查寻开放数据列
     open_data_codes = mymysql.execute("""
-        select code from designer_data_struct where did = %s and is_open_data=1
+        select id, code, is_open_data from designer_data_struct where did = %s
         """ % did)
+    allow_code_list = []
+    open_data_code_obj = {}
+    for item in open_data_codes:
+        open_data_code_obj[item["code"]] = item
+        if item["is_open_data"] == 1:
+            allow_code_list.append(item["code"])
     # 替换列表中开放数据列为引用key
     for data_item in data:
-        for code_item in open_data_codes:
-            open_data_code = code_item["code"]
-            data_item[open_data_code] = "SOA数据引用key: %s__%s__%s" % (did, data_item["id"], open_data_code)
+        for data_item_key in data_item:
+            if data_item_key in allow_code_list or data_item_key == "id":
+                continue
+            data_item[data_item_key] = "SOA数据引用key: %s__%s__%s" % (
+                did, data_item["id"], (open_data_code_obj[data_item_key])["id"])
     return json.dumps({
         'page_total': page_total,
         'data': data,
