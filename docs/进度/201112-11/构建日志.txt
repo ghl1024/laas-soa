@@ -1,0 +1,545 @@
+
+WARNING:root:execute_data_id: 98 log_content: 执行器启动中: data_id: 7 data_data_id: 17 data_data_data: {'id': 17, 'git_server': '1', 'project_name': '仓库系统', 'branches': 'master', 'tags': '', 'program_language': 'java', 'docker_registry_id': '2', 'update_datetime': {'$date': 1605613621000}, 'create_datetime': {'$date': 1605613621000}, 'repo_path': 'http://git.wjh.com/wms/wms_service', 'module_path': 'wms-service/wms-server'}
+WARNING:root:execute_data_id: 98 log_content: 启动时间: 2020-11-17 11:47:03.422286
+WARNING:root:execute_data_id: 98 log_content: 执行器已启动
+127.0.0.1 - - [17/Nov/2020 11:47:03] "POST /native/executor/data/insert HTTP/1.0" 200 -
+INFO:werkzeug:127.0.0.1 - - [17/Nov/2020 11:47:03] "POST /native/executor/data/insert HTTP/1.0" 200 -
+WARNING:root:execute_data_id: 98 log_content: 
+WARNING:root:execute_data_id: 98 log_content: sftp putting D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/data_data/docker_registry.json to /data/tristan/1/data_data/docker_registry.json
+WARNING:root:execute_data_id: 98 log_content: sftp putted D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/data_data/docker_registry.json to /data/tristan/1/data_data/docker_registry.json
+WARNING:root:execute_data_id: 98 log_content: sftp putting D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/data_data/git_server.json to /data/tristan/1/data_data/git_server.json
+WARNING:root:execute_data_id: 98 log_content: sftp putted D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/data_data/git_server.json to /data/tristan/1/data_data/git_server.json
+WARNING:root:execute_data_id: 98 log_content: sftp putting D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/business_hyper_fusion/java/build_docker.sh to /data/tristan/1/business_hyper_fusion/java/build_docker.sh
+WARNING:root:execute_data_id: 98 log_content: sftp putted D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/business_hyper_fusion/java/build_docker.sh to /data/tristan/1/business_hyper_fusion/java/build_docker.sh
+WARNING:root:execute_data_id: 98 log_content: sftp putting D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/business_hyper_fusion/java/build_project.sh to /data/tristan/1/business_hyper_fusion/java/build_project.sh
+WARNING:root:execute_data_id: 98 log_content: sftp putted D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/business_hyper_fusion/java/build_project.sh to /data/tristan/1/business_hyper_fusion/java/build_project.sh
+WARNING:root:execute_data_id: 98 log_content: sftp putting D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/business_hyper_fusion/java/clean_build_docker.sh to /data/tristan/1/business_hyper_fusion/java/clean_build_docker.sh
+WARNING:root:execute_data_id: 98 log_content: sftp putted D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/business_hyper_fusion/java/clean_build_docker.sh to /data/tristan/1/business_hyper_fusion/java/clean_build_docker.sh
+WARNING:root:execute_data_id: 98 log_content: sftp putting D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/business_hyper_fusion/java/Dockerfile to /data/tristan/1/business_hyper_fusion/java/Dockerfile
+WARNING:root:execute_data_id: 98 log_content: sftp putted D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/business_hyper_fusion/java/Dockerfile to /data/tristan/1/business_hyper_fusion/java/Dockerfile
+WARNING:root:execute_data_id: 98 log_content: sftp putting D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/business_hyper_fusion/java/do_build_project.sh to /data/tristan/1/business_hyper_fusion/java/do_build_project.sh
+WARNING:root:execute_data_id: 98 log_content: sftp putted D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/business_hyper_fusion/java/do_build_project.sh to /data/tristan/1/business_hyper_fusion/java/do_build_project.sh
+WARNING:root:execute_data_id: 98 log_content: sftp putting D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/business_hyper_fusion/java/startup.sh to /data/tristan/1/business_hyper_fusion/java/startup.sh
+WARNING:root:execute_data_id: 98 log_content: sftp putted D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/business_hyper_fusion/java/startup.sh to /data/tristan/1/business_hyper_fusion/java/startup.sh
+WARNING:root:execute_data_id: 98 log_content: sync local:[D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project] to remote:[/data/tristan/1] dirs:[['data_data', 'business_hyper_fusion']] success
+WARNING:root:execute_data_id: 98 log_content: sftp putting D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/startup.py to /data/tristan/1/startup.py
+WARNING:root:execute_data_id: 98 log_content: sftp putted D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project/startup.py to /data/tristan/1/startup.py
+WARNING:root:execute_data_id: 98 log_content: sync local:[D:\projects\github\laashub-soa\laas-soa\business_hardcode/build_project] to remote:[/data/tristan/1] dirs:[['startup.py']] success
+WARNING:root:execute_data_id: 98 log_content: cd /data/tristan/1 && python startup.py -ei 98
+
+
+
+WARNING:root:execute_data_id: 98 log_content: [root@localhost ~]# cd /data/tristan/1 && python startup.py -ei 98
+
+WARNING:root:execute_data_id: 98 log_content: cd /data/tristan/1/cache/code/git_wjh_com/wms/wms_service/branches/master && git pull origin
+
+WARNING:root:execute_data_id: 98 log_content: Already up-to-date.
+
+chmod +x /data/tristan/1/business_hyper_fusion/java
+
+WARNING:root:execute_data_id: 98 log_content: 
+chmod +x /data/tristan/1/business_hyper_fusion/java
+
+WARNING:root:execute_data_id: 98 log_content: 
+docker run -d --name=execute_business_1_98_code -v /data/tristan/1/cache/dependency/java:/root/.m2 -v /data/tristan/1/cache/code/git_wjh_com/wms/wms_service/branches/master:/source_code maven:3-alpine /bin/bash -c 'cd /source_code && mvn clean package  -DskipTests' && docker logs -f execute_business_1_98_code && docker rm execute_business_1_98_code
+
+WARNING:root:execute_data_id: 98 log_content: 6718e67f89c4f0165c23fad9c644e3136a242d1525f3ebc1f77e99c9027cd24e
+[INFO] Scanning for projects...
+Downloading: http://192.168.90.232:8081/repository/maven-public/com/wjh/wjh-parent/2.0.2-SNAPSHOT/maven-metadata.xml
+Downloaded: http://192.168.90.232:8081/repository/maven-public/com/wjh/wjh-parent/2.0.2-SNAPSHOT/maven-metadata.xml (594 B at 5.2 kB/s)
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Build Order:
+[INFO] 
+[INFO] wms-client-parent
+[INFO] wms-common
+[INFO] wms-parent
+[INFO] wms-core
+[INFO] wms-dto
+[INFO] wms-dal-dto
+[INFO] wms-server-dto
+[INFO] wms-client-dto
+[INFO] wms-rpc-dto
+[INFO] wms-client
+[INFO] wms-message-dto
+[INFO] wms-service
+[INFO] wms-dal
+[INFO] wms-server
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building wms-client-parent 1.0.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ wms-client-parent ---
+[INFO] 
+[INFO] --- maven-source-plugin:2.4:jar-no-fork (attach-sources) @ wms-client-parent ---
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building wms-common 1.0.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ wms-common ---
+[INFO] Deleting /source_code/wms-client-parent/wms-common/target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ wms-common ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /source_code/wms-client-parent/wms-common/src/main/resources
+[INFO] skip non existing resourceDirectory /source_code/wms-client-parent/wms-common/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ wms-common ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 37 source files to /source_code/wms-client-parent/wms-common/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ wms-common ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /source_code/wms-client-parent/wms-common/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ wms-common ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ wms-common ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ wms-common ---
+[INFO] Building jar: /source_code/wms-client-parent/wms-common/target/wms-common-1.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-source-plugin:2.4:jar-no-fork (attach-sources) @ wms-common ---
+[INFO] Building jar: /source_code/wms-client-parent/wms-common/target/wms-common-1.0.0-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building wms-parent 1.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ wms-parent ---
+[INFO] 
+[INFO] --- maven-source-plugin:2.4:jar-no-fork (attach-sources) @ wms-parent ---
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building wms-core 1.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+Downloading: http://192.168.90.232:8081/repository/maven-public/com/wjh/wjh-common/2.0.2-SNAPSHOT/maven-metadata.xml
+Downloaded: http://192.168.90.232:8081/repository/maven-public/com/wjh/wjh-common/2.0.2-SNAPSHOT/maven-metadata.xml (981 B at 75 kB/s)
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ wms-core ---
+[INFO] Deleting /source_code/wms-core/target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ wms-core ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ wms-core ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 74 source files to /source_code/wms-core/target/classes
+[INFO] /source_code/wms-core/src/main/java/com/wjh/wms/core/utils/JsonUtil.java: /source_code/wms-core/src/main/java/com/wjh/wms/core/utils/JsonUtil.java uses or overrides a deprecated API.
+[INFO] /source_code/wms-core/src/main/java/com/wjh/wms/core/utils/JsonUtil.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ wms-core ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 2 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ wms-core ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 23 source files to /source_code/wms-core/target/test-classes
+[INFO] /source_code/wms-core/src/test/java/com/wjh/wms/core/test/Pinyin4jTest.java: /source_code/wms-core/src/test/java/com/wjh/wms/core/test/Pinyin4jTest.java uses or overrides a deprecated API.
+[INFO] /source_code/wms-core/src/test/java/com/wjh/wms/core/test/Pinyin4jTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ wms-core ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ wms-core ---
+[INFO] Building jar: /source_code/wms-core/target/wms-core-1.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-source-plugin:2.4:jar-no-fork (attach-sources) @ wms-core ---
+[INFO] Building jar: /source_code/wms-core/target/wms-core-1.0.1-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building wms-dto 1.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ wms-dto ---
+[INFO] 
+[INFO] --- maven-source-plugin:2.4:jar-no-fork (attach-sources) @ wms-dto ---
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building wms-dal-dto 1.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ wms-dal-dto ---
+[INFO] Deleting /source_code/wms-dto/wms-dal-dto/target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ wms-dal-dto ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /source_code/wms-dto/wms-dal-dto/src/main/resources
+[INFO] skip non existing resourceDirectory /source_code/wms-dto/wms-dal-dto/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ wms-dal-dto ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 11 source files to /source_code/wms-dto/wms-dal-dto/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ wms-dal-dto ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /source_code/wms-dto/wms-dal-dto/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ wms-dal-dto ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ wms-dal-dto ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ wms-dal-dto ---
+[INFO] Building jar: /source_code/wms-dto/wms-dal-dto/target/wms-dal-dto-1.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-source-plugin:2.4:jar-no-fork (attach-sources) @ wms-dal-dto ---
+[INFO] Building jar: /source_code/wms-dto/wms-dal-dto/target/wms-dal-dto-1.
+WARNING:root:execute_data_id: 98 log_content: 0.1-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building wms-server-dto 1.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ wms-server-dto ---
+[INFO] Deleting /source_code/wms-dto/wms-server-dto/target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ wms-server-dto ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /source_code/wms-dto/wms-server-dto/src/main/resources
+[INFO] skip non existing resourceDirectory /source_code/wms-dto/wms-server-dto/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ wms-server-dto ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 197 source files to /source_code/wms-dto/wms-server-dto/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ wms-server-dto ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /source_code/wms-dto/wms-server-dto/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ wms-server-dto ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ wms-server-dto ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ wms-server-dto ---
+[INFO] Building jar: /source_code/wms-dto/wms-server-dto/target/wms-server-dto-1.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-source-plugin:2.4:jar-no-fork (attach-sources) @ wms-server-dto ---
+[INFO] Building jar: /source_code/wms-dto/wms-server-dto/target/wms-server-dto-1.0.1-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building wms-client-dto 1.0.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ wms-client-dto ---
+[INFO] 
+[INFO] --- maven-source-plugin:2.4:jar-no-fork (attach-sources) @ wms-client-dto ---
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building wms-rpc-dto 1.0.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ wms-rpc-dto ---
+[INFO] Deleting /source_code/wms-client-parent/wms-client-dto/wms-rpc-dto/target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ wms-rpc-dto ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /source_code/wms-client-parent/wms-client-dto/wms-rpc-dto/src/main/resources
+[INFO] skip non existing resourceDirectory /source_code/wms-client-parent/wms-client-dto/wms-rpc-dto/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ wms-rpc-dto ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 8 source files to /source_code/wms-client-parent/wms-client-dto/wms-rpc-dto/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ wms-rpc-dto ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /source_code/wms-client-parent/wms-client-dto/wms-rpc-dto/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ wms-rpc-dto ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ wms-rpc-dto ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ wms-rpc-dto ---
+[INFO] Building jar: /source_code/wms-client-parent/wms-client-dto/wms-rpc-dto/target/wms-rpc-dto-1.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-source-plugin:2.4:jar-no-fork (attach-sources) @ wms-rpc-dto ---
+[INFO] Building jar: /source_code/wms-client-parent/wms-client-dto/wms-rpc-dto/target/wms-rpc-dto-1.0.0-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building wms-client 1.0.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ wms-client ---
+[INFO] Deleting /source_code/wms-client-parent/wms-client/target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ wms-client ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ wms-client ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 6 source files to /source_code/wms-client-parent/wms-client/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ wms-client ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 1 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ wms-client ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 3 source files to /source_code/wms-client-parent/wms-client/target/test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ wms-client ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ wms-client ---
+[INFO] Building jar: /source_code/wms-client-parent/wms-client/target/wms-client-1.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-source-plugin:2.4:jar-no-fork (attach-sources) @ wms-client ---
+[INFO] Building jar: /source_code/wms-client-parent/wms-client/target/wms-client-1.0.0-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building wms-message-dto 1.0.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+Downloading: http://192.168.90.232:8081/repository/maven-public/com/wjh/message/1.0.25-SNAPSHOT/maven-metadata.xml
+Downloaded: http://192.168.90.232:8081/repository/maven-public/com/wjh/message/1.0.25-SNAPSHOT/maven-metadata.xml (982 B at 76 kB/s)
+Downloading: http://192.168.90.232:8081/repository/maven-public/com/wjh/synchronization-lock/1.0.4-SNAPSHOT/maven-metadata.xml
+Downloaded: http://192.168.90.232:8081/repository/maven-public/com/wjh/synchronization-lock/1.0.4-SNAPSHOT/maven-metadata.xml (991 B at 99 kB/s)
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ wms-message-dto ---
+[INFO] Deleting /source_code/wms-client-parent/wms-client-dto/wms-message-dto/target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ wms-message-dto ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /source_code/wms-client-parent/wms-client-dto/wms-message-dto/src/main/resources
+[INFO] skip non existing resourceDirectory /source_code/wms-client-parent/wms-client-dto/wms-message-dto/src/main/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ wms-message-dto ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 13 source files to /source_code/wms-client-parent/wms-client-dto/wms-message-dto/target/classes
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ wms-message-dto ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] skip non existing resourceDirectory /source_code/wms-client-parent/wms-client-dto/wms-message-dto/src/test/resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ wms-message-dto ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ wms-message-dto ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ wms-message-dto ---
+[INFO] Building jar: /source_code/wms-client-parent/wms-client-dto/wms-message-dto/target/wms-message-dto-1.0.0-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-source-plugin:2.4:jar-no-fork (attach-sources) @ wms-message-dto ---
+[INFO] Building jar: /source_code/wms-client-parent/wms-client-dto/wms-message-dto/target/wms-message-dto-1.0.0-SNAPSHOT-sources.jar
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building wms-service 1.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ wms-service ---
+[INFO] 
+[INFO] --- maven-source-plugin:2.4:jar-no-fork (attach-sources) @ wms-service ---
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building wms-dal 1.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+Downloading: http://192.168.90.232:8081/repository/maven-public/com/wjh/wjh-logging/1.0.6-SNAPSHOT/maven-metadata.xml
+Downloaded: http://192.168.90.232:8081/repository/maven-public/com/wjh/wjh-logging/1.0.6-SNAPSHOT/maven-metadata.xml (982 B at 76 kB/s)
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ wms-dal ---
+[INFO] Deleting /source_code/wms-service/wms-dal/target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ wms-dal ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] Copying 20 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ wms-dal ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 66 source files to /source_code/wms-service/wms-dal/target/classes
+[INFO] /source_code/wms-service/wms-dal/src/main/java/com/wjh/wms/dal/mybatis/MybatisPlusConfig.java: Some input files use or override a deprecated API.
+[INFO] /source_code/wms-service/wms-dal/src/main/java/com/wjh/wms/dal/mybatis/MybatisPlusConfig.java: Recompile with -Xlint:deprecation for details.
+[INFO] /source_code/wms-service/wms-dal/src/main/java/com/wjh/wms/dal/mybatis/manager/BaseManger.java: Some input files use unchecked or unsafe operations.
+[INFO] /source_code/wms-service/wms-dal/src/main/java/com/wjh/wms/dal/mybatis/manager/BaseManger.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ wms-dal ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 3 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ wms-dal ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 1 source file to /source_code/wms-service/wms-dal/target/test-classes
+[INFO] /source_code/wms-service/wms-dal/src/test/java/com/wjh/wms/dal/WmsDalBootstrapTest.java: /source_code/wms-service/wms-dal/src/test/java/com/wjh/wms/dal/WmsDalBootstrapTest.java uses or overrides a deprecated API.
+[INFO] /source_code/wms-service/wms-dal/src/test/java/com/wjh/wms/dal/WmsDalBootstrapTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] /source_code/wms-service/wms-dal/src/test/java/com/wjh/wms/dal/WmsDalBootstrapTest.java: /source_code/wms-service/wms-dal/src/test/java/com/wjh/wms/dal/WmsDalBootstrapTest.java uses unchecked or unsafe operations.
+[INFO] /source_code/wms-service/wms-dal/src/test/java/com/wjh/wms/dal/WmsDalBootstrapTest.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ wms-dal ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ wms-dal ---
+[INFO] Building jar: /source_code/wms-service/wms-dal/target/wms-dal.jar
+[INFO] 
+[INFO] --- maven-source-plugin:2.4:jar-no-fork (attach-sources) @ wms-dal ---
+[INFO] Building jar: /source_code/wms-service/wms-dal/target/wms-dal-sources.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.2.8.RELEASE:repackage (repackage) @ wms-dal ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] Building wms-server 1.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+Downloading: http://192.168.90.232:8081/repository/maven-public/com/wjh/leaf-client/1.0.6-SNAPSHOT/maven-metadata.xml
+Downloaded: http://192.168.90.232:8081/repository/maven-public/com/wjh/leaf-client/1.0.6-SNAPSHOT/maven-metadata.xml (982 B at 957 B/s)
+Downloading: http://192.168.90.232:8081/repository/maven-public/com/wjh/wjh-parent/1.0.1-SNAPSHOT/maven-metadata.xml
+Downloaded: http://192.168.90.232:8081/repository/maven-public/com/wjh/wjh-parent/1.0.1-SNAPSHOT/maven-metadata.xml (594 B at 59 kB/s)
+Downloading: http://192.168.90.232:8081/repository/maven-public/com/wjh/grayscale-config/1.0.2-SNAPSHOT/maven-metadata.xml
+Downloaded: http://192.168.90.232:8081/repository/maven-public/com/wjh/grayscale-config/1.0.2-SNAPSHOT/maven-metadata.xml (987 B at 3.9 kB/s)
+[INFO] 
+[INFO] --- maven-clean-plugin:3.1.0:clean (default-clean) @ wms-server ---
+[INFO] Deleting /source_code/wms-service/wms-server/target
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:resources (default-resources) @ wms-server ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 0 resource
+[INFO] Copying 70 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:compile (default-compile) @ wms-server ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 899 source files to /source_code/wms-service/wms-server/target/classes
+[INFO] /source_code/wms-service/wms-server/src/main/java/com/wjh/wms/biz/receipt/bo/ReceiptDetailItemBO.java: Some input files use or override a deprecated API.
+[INFO] /source_code/wms-service/wms-server/src/main/java/com/wjh/wms/biz/receipt/bo/ReceiptDetailItemBO.java: Recompile with -Xlint:deprecation for details.
+[INFO] /source_code/wms-service/wms-server/src/main/java/com/wjh/wms/biz/receipt/manager/ReceiptDetailManager.java: Some input files use unchecked or unsafe operations.
+[INFO] /source_code/wms-service/wms-server/src/main/java/com/wjh/wms/biz/receipt/manager/ReceiptDetailManager.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- maven-resources-plugin:3.1.0:testResources (default-testResources) @ wms-server ---
+[INFO] Using 'UTF-8' encoding to copy filtered resources.
+[INFO] Copying 4 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.7.0:testCompile (default-testCompile) @ wms-server ---
+[INFO] Changes detected - recompiling the module!
+[INFO] Compiling 33 source files to /source_code/wms-service/wms-server/target/test-classes
+[INFO] /source_code/wms-service/wms-server/src/test/java/com/wjh/wms/BaseMockTest.java: Some input files use or override a deprecated API.
+[INFO] /source_code/wms-service/wms-server/src/test/java/com/wjh/wms/BaseMockTest.java: Recompile with -Xlint:deprecation for details.
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.22.2:test (default-test) @ wms-server ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- maven-jar-plugin:3.1.2:jar (default-jar) @ wms-server ---
+[INFO] Building jar: /source_code/wms-service/wms-server/target/wms-server.jar
+[INFO] 
+[INFO] --- maven-source-plugin:2.4:jar-no-fork (attach-sources) @ wms-server ---
+[INFO] Building jar: /source_code/wms-service/wms-server/target/wms-server-sources.jar
+[INFO] 
+[INFO] --- spring-boot-maven-plugin:2.2.8.RELEASE:repackage (repackage) @ wms-server ---
+[INFO] Replacing main artifact with repackaged archive
+[INFO] ------------------------------------------------------------------------
+[INFO] Reactor Summary:
+[INFO] 
+[INFO] wms-client-parent .................................. SUCCESS [  0.970 s]
+[INFO] wms-common ......................................... SUCCESS [  4.508 s]
+[INFO] wms-parent ......................................... SUCCESS [  0.003 s]
+[INFO] wms-core ........................................... SUCCESS [  6.744 s]
+[INFO] wms-dto ............................................ SUCCESS [  0.002 s]
+[INFO] wms-dal-dto ........................................ SUCCESS [  2.053 s]
+[INFO] wms-server-dto ..................................... SUCCESS [  8.245 s]
+[INFO] wms-client-dto ..................................... SUCCESS [  0.002 s]
+[INFO] wms-rpc-dto ........................................ SUCCESS [  1.812 s]
+[INFO] wms-client ......................................... SUCCESS [  3.838 s]
+[INFO] wms-message-dto .................................... SUCCESS [  2.974 s]
+[INFO] wms-service ........................................ SUCCESS [  0.002 s]
+[INFO] wms-dal ............................................ SUCCESS [  6.059 s]
+[INFO] wms-server ......................................... SUCCESS [ 30.105 s]
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 01:09 min
+[INFO] Finished at: 2020-11-17T03:49:40Z
+[INFO] Final Memory: 158M/1048M
+[INFO] ------------------------------------------------------------------------
+execute_business_1_98_code
+
+
+WARNING:root:execute_data_id: 98 log_content: image_id: registry.wjh.com/dev/wms_wms_service:98
+cp /data/tristan/1/business_hyper_fusion/java/Dockerfile /data/tristan/1/cache/code/git_wjh_com/wms/wms_service/branches/master/wms-service/wms-server/Dockerfile
+
+WARNING:root:execute_data_id: 98 log_content: 
+cp /data/tristan/1/business_hyper_fusion/java/startup.sh /data/tristan/1/cache/code/git_wjh_com/wms/wms_service/branches/master/wms-service/wms-server/startup.sh
+
+WARNING:root:execute_data_id: 98 log_content: 
+build_docker_sh_template: cat {docker_registry_password_path} | docker login {registry_url} --username {registry_username} --password-stdin && cd {finally_project_build_path} && rm -rf target/*-sources.jar && ls -alh target/ && docker build -t {docker_image_id} . && docker push {docker_image_id}
+
+WARNING:root:execute_data_id: 98 log_content: WARNING! Your password will be stored unencrypted in /root/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+
+WARNING:root:execute_data_id: 98 log_content: Login Succeeded
+total 122M
+drwxr-xr-x. 8 root root  191 Nov 16 22:49 .
+drwxr-xr-x. 6 root root  107 Nov 16 22:49 ..
+drwxr-xr-x. 7 root root  144 Nov 16 22:49 classes
+drwxr-xr-x. 3 root root   25 Nov 16 22:49 generated-sources
+drwxr-xr-x. 3 root root   30 Nov 16 22:49 generated-test-sources
+drwxr-xr-x. 2 root root   28 Nov 16 22:49 maven-archiver
+drwxr-xr-x. 3 root root   35 Nov 16 22:49 maven-status
+drwxr-xr-x. 5 root root   65 Nov 16 22:49 test-classes
+-rw-r--r--. 1 root root 120M Nov 16 22:49 wms-server.jar
+-rw-r--r--. 1 root root 2.2M Nov 16 22:49 wms-server.jar.original
+
+Step 1/7 : FROM registry.wjh.com/registry/openjdk:8-alpine
+ ---> 1b94f0f28c07
+Step 2/7 : ADD target/*.jar app.jar
+ ---> b0d5504dcb71
+Step 3/7 : ADD startup.sh startup.sh
+ ---> a7c85cd2af42
+Step 4/7 : RUN chmod 777 startup.sh
+ ---> Running in 1d6d0fc2fa61
+Removing intermediate container 1d6d0fc2fa61
+ ---> 9d84270502e2
+Step 5/7 : RUN echo 'Asia/Shanghai' > /etc/timezone
+ ---> Running in 02ca1b476655
+Removing intermediate container 02ca1b476655
+ ---> 4b57c686cb44
+Step 6/7 : RUN  mkdir -p /data/servicesLog/logs
+ ---> Running in 9ae93e7040e6
+Removing intermediate container 9ae93e7040e6
+ ---> d41cb3eb169e
+Step 7/7 : ENTRYPOINT ["./startup.sh"]
+ ---> Running in abeabfc72c00
+Removing intermediate container abeabfc72c00
+ ---> b71619a9bcf5
+Successfully built b71619a9bcf5
+Successfully tagged registry.wjh.com/dev/wms_wms_service:98
+The push refers to repository [registry.wjh.com/dev/wms_wms_service]
+ada5d6cbe601: Preparing
+9c03b4941981: Preparing
+4254eec77bd4: Preparing
+032b05d3a1e1: Preparing
+5e53e315bd22: Preparing
+abc356d24181: Preparing
+ceaf9e1ebef5: Preparing
+9b9b7f3d56a0: Preparing
+f1b5933fe4b5: Preparing
+abc356d24181: Waiting
+9b9b7f3d56a0: Waiting
+ceaf9e1ebef5: Waiting
+f1b5933fe4b5: Waiting
+ada5d6cbe601: Pushed
+4254eec77bd4: Pushed
+032b05d3a1e1: Pushed
+9c03b4941981: Pushed
+f1b5933fe4b5: Layer already exists
+abc356d24181: Layer already exists
+9b9b7f3d56a0: Layer already exists
+ceaf9e1ebef5: Layer already exists
+5e53e315bd22: Pushed
+98: digest: sha256:8048e01bd7f13f1889e4bf714c23d48f221308525321d41f105e4dab0d3fb749 size: 2200
+
+
+========================================================================================================================================================================================================
+WARNING:root:execute_data_id: 98 log_content: [root@localhost 1]# 
+WARNING:root:execute_data_id: 98 log_content: 结束时间: 2020-11-17 11:50:22.432562
+WARNING:root:execute_data_id: 98 log_content: 总耗时: %s 秒钟0
