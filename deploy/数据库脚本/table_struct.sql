@@ -11,15 +11,18 @@ CREATE TABLE `designer_data_directory`
   COLLATE = utf8mb4_unicode_ci;
 
 
+
 create table designer_data_struct
 (
     id             int auto_increment
         primary key,
-    did            int               not null,
-    code           varchar(100)      not null,
-    meaning        varchar(100)      not null,
-    reference_type varchar(100)      null,
-    is_open_data   tinyint default 0 null comment '是否开放数据'
+    did            int                           not null,
+    code           varchar(100)                  not null,
+    meaning        varchar(100)                  not null,
+    reference_type varchar(100)                  null,
+    is_open_data   tinyint      default 0        null comment '是否开放数据',
+    data_type      varchar(100) default 'string' null comment '数据类型',
+    default_value  varchar(255)                  null comment '默认值'
 );
 
 

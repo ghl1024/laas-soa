@@ -13,7 +13,7 @@ app = Blueprint('native_cmdb_struct', __name__,
 def select():
     request_data = form.check(["did"])
     return json.dumps(mymysql.execute("""
-                select id, code, meaning, reference_type, is_open_data
+                select id, code, meaning, reference_type, is_open_data, data_type
                 from designer_data_struct
                 where did = %(did)s
     """, request_data))
@@ -29,14 +29,14 @@ def insert():
         request_data)
 
     return json.dumps(mymysql.execute("""
-                insert into designer_data_struct(did, code, meaning, reference_type, is_open_data ) 
-                values (%(did)s, %(code)s, %(meaning)s, %(reference_type)s, %(is_open_data)s)
+                insert into designer_data_struct(did, code, meaning, reference_type, is_open_data, data_type ) 
+                values (%(did)s, %(code)s, %(meaning)s, %(reference_type)s, %(is_open_data)s, %(data_type)s)
     """, request_data))
 
 
 @app.route('/update', methods=['POST'])
 def update():
-    request_data = form.check(["did", "code", "meaning", "reference_type", "is_open_data"])
+    request_data = form.check(["did", "code", "meaning", "reference_type", "is_open_data", "data_type"])
     old_code = request_data['code']
     code = request_data['code']
     if request_data.__contains__("old_code"):
@@ -52,6 +52,7 @@ def update():
                     ,meaning = %(meaning)s 
                     ,reference_type = %(reference_type)s 
                     ,is_open_data = %(is_open_data)s
+                    ,data_type = %(data_type)s
                 where id = %(id)s
     """, request_data))
 
