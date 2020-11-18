@@ -27,11 +27,16 @@ def select():
         select_sql_keys += ', description'
         select_sql_where = " and id = %(id)s "
         params['id'] = request_data["id"]
+    # 是否查询关联数据模型
+
+    # 是否开放数据
     is_open_data = False
     if request_data.__contains__('is_open_data'):
         is_open_data = request_data["is_open_data"]
     if is_open_data:
         select_sql_where += "  and exists(select 1 from designer_data_struct dds where dds.did = ddd.id and dds.is_open_data = 1)"
+
+
     select_sql = 'select ' + select_sql_keys + ' from designer_data_directory ddd where 1 = 1 ' + select_sql_where
     return json.dumps(mymysql.execute(select_sql, params))
 
