@@ -14,6 +14,13 @@ app = Blueprint('native_cmdb_directory', __name__,
 def select():
     request_data = form.check()
     select_sql_keys = "id, pid, name"
+    select_sql_keys += """
+    ,(select group_concat(reference_type)
+        from designer_data_struct dds
+        where ddd.id = dds.did
+          and dds.reference_type
+          and dds.reference_type != '') reference_types
+    """
     select_sql_where = ''
     params = {}
     if request_data.__contains__('id'):
