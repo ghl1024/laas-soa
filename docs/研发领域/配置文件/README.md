@@ -56,11 +56,17 @@ content
 
 # 数据模型
 
+最小单元、引用数据、过程数据、结果数据
+
+初始数据
+
 ## 项目(project)
 
 | 字段 | 类型   | 默认值 | 含义     | 关联模型 |
 | ---- | ------ | ------ | -------- | -------- |
 | name | string |        | 项目名称 |          |
+
+## 项目环境引用(project_environment_quote)
 
 ## 项目环境(project_environment)
 
@@ -71,11 +77,12 @@ content
 
 ## 项目配置文件(project_configuration_file)
 
-| 字段                | 类型        | 默认值 | 含义 | 关联模型            |
-| ------------------- | ----------- | ------ | ---- | ------------------- |
-| project_environment | string      |        | 环境 | project_environment |
-| path                | path_string |        | 路径 |                     |
-| content             | file_string |        | 内容 |                     |
+| 字段                             | 类型        | 默认值 | 含义     | 关联模型            |
+| -------------------------------- | ----------- | ------ | -------- | ------------------- |
+| project_environment              | string      |        | 项目环境 | project_environment |
+| project_environment_environments | string      |        | 环境     |                     |
+| path                             | path_string |        | 路径     |                     |
+| content                          | file_string |        | 内容     |                     |
 
 查询指定模型时会先查询关联模型, 关联模型之前会先进行排序
 
