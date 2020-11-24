@@ -21,11 +21,16 @@ def select():
 
 @app.route('/insert', methods=['POST'])
 def insert():
-    request_data = form.check(["did", "code", "meaning", "reference_type"])
+    request_data = form.check(["did", "code", "meaning", "reference_type", "data_type"])
     code = request_data['code']
+    data_type = request_data['data_type']
     # insert column to data data
+    column_type = "VARCHAR(255)"
+    if data_type == "file_string":
+        column_type = "mediumtext"
     mymysql.execute(
-        'ALTER TABLE designer_data_data_%(did)s ADD COLUMN ' + code + ' VARCHAR(255) DEFAULT NULL COMMENT %(meaning)s;',
+        'ALTER TABLE designer_data_data_%(did)s ADD COLUMN '
+        + code + ' ' + column_type + ' DEFAULT NULL COMMENT %(meaning)s;',
         request_data)
 
     return json.dumps(mymysql.execute("""
@@ -42,12 +47,16 @@ def update():
         ["did", "code", "meaning", "reference_type", "is_open_data", "data_type", "default_value"])
     old_code = request_data['code']
     code = request_data['code']
+    data_type = request_data['data_type']
     if request_data.__contains__("old_code"):
         old_code = request_data['old_code']
     # update column to data data
+    column_type = "VARCHAR(255)"
+    if data_type == "file_string":
+        column_type = "mediumtext"
     mymysql.execute(
-        'ALTER TABLE designer_data_data_%(did)s change ' + old_code + ' ' + code
-        + ' VARCHAR(255) DEFAULT NULL COMMENT %(meaning)s;',
+        'ALTER TABLE designer_data_data_%(did)s change ' + old_code + ' ' + code + ' ' + column_type
+        + ' DEFAULT NULL COMMENT %(meaning)s;',
         request_data)
     return json.dumps(mymysql.execute("""
                 update designer_data_struct 
