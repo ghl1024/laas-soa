@@ -127,24 +127,26 @@ class Nacos(object):
         file_list = []
         for resp_data_item in resp_data:
             file_path = resp_data_item["dataId"]
+            group = resp_data_item["group"]
             file_content = resp_data_item["content"]
             file_list.append({
                 "file_path": file_path,
+                "group": group,
                 "file_content": file_content,
             })
         return file_list
 
     # 新增文件
-    def insert_file(self, project_id, env, file_path, file_content):
-        file_path = file_path.replace("/", "-")
+    def insert_file(self, project_id, env, file_path, file_content, group="DEFAULT_GROUP"):
+        file_path = file_path.replace("/", "--")
         request_url = self.base_url + "/nacos/v1/cs/configs"
         request_params = {
             "accessToken": self.access_token,
         }
         request_data = {
             "tenant": project_id,
-            "group": "DEFAULT_GROUP",
-            "dataId": file_path + "-" + env,
+            "group": group,
+            "dataId": file_path + "--" + env,
             "content": file_content,
         }
         resp = requests.post(request_url, params=request_params, data=request_data)
@@ -157,16 +159,16 @@ class Nacos(object):
         pass
 
     # 删除文件
-    def delete_file(self, project_id, env, file_path):
-        file_path = file_path.replace("/", "-")
+    def delete_file(self, project_id, env, file_path, group="DEFAULT_GROUP"):
+        file_path = file_path.replace("/", "--")
         request_url = self.base_url + "/nacos/v1/cs/configs"
         request_params = {
             "accessToken": self.access_token,
         }
         request_data = {
             "tenant": project_id,
-            "group": "DEFAULT_GROUP",
-            "dataId": file_path + "-" + env,
+            "group": group,
+            "dataId": file_path + "--" + env,
         }
         resp = requests.delete(request_url, params=request_params, data=request_data)
         if "true" == resp.text:
