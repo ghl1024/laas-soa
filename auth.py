@@ -40,7 +40,7 @@ def do_auth():
     # url_root = request.url_root # 请求的根路径, 包含请求协议、域名、端口
     if token in local_memory_token_record:
         local_memory_token_record_value = local_memory_token_record[token]
-        if int(time.time()) < local_memory_token_record_value["timestamp"] - 7 * 24 * 60 * 60:
+        if int(time.time()) < local_memory_token_record_value["timestamp"] + 7 * 24 * 60 * 60:
             return
     query_token_by_remote(token)
 
