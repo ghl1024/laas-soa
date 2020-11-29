@@ -5,13 +5,10 @@ import requests
 """
 托管nacos
 """
-nacos_base_url = "http://192.168.90.232:8848"
-
-access_token_pool = {}
 
 
 class Nacos(object):
-    def __init__(self, base_url="http://192.168.90.232:8848", username="nacos", password="nacos"):
+    def __init__(self, base_url, username, password):
         self.base_url = base_url
         self.username = username
         self.password = password
@@ -33,9 +30,6 @@ class Nacos(object):
             print(result_text)
             raise e + result_text
         access_token = result["accessToken"]
-        print("access_token: ", access_token)
-        global access_token_pool
-        access_token_pool[nacos_base_url] = access_token
         return access_token
 
     # #####项目

@@ -12,7 +12,10 @@ if __name__ == '__main__':
     env = "dev"
     file_path = "configs/application.yaml"
     file_content = "configs/application.yaml"
-    nacos = Nacos()
+    base_url = "http://192.168.90.232:8848"
+    username = "nacos"
+    password = "nacos"
+    nacos = Nacos(base_url, username, password)
     # 同步nacos数据到soa
     # 查询nacos的项目列表
     project_list = nacos.select_project_list()
