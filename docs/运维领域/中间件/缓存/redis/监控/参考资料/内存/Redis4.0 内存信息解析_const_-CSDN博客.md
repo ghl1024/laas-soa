@@ -1,0 +1,48 @@
+由 Redis 分配器分配的内存总量，包含了redis进程内部的开销和数据占用的内存，以字节（byte）为单位
+used_memory:11605392
+更直观的单位展示分配的内存总量。
+used_memory_human:11.07M
+Redis进程占据操作系统的内存（单位是字节），与top及ps命令看到的值是一致的；除了分配器分配的内存之外，used_memory_rss还包括进程运行本身需要的内存、内存碎片等，但是不包括虚拟内存。
+used_memory_rss:18878464
+更直观的单位展示向操作系统申请的内存大小。
+used_memory_rss_human:18.00M
+redis的内存消耗峰值(以字节为单位)
+used_memory_peak:11811464
+以更直观的格式返回redis的内存消耗峰值
+used_memory_peak_human:11.26M
+使用内存达到峰值内存的百分比，即(used_memory/ used_memory_peak) *100%
+used_memory_peak_perc:98.26%
+Redis为了维护数据集的内部机制所需的内存开销，包括所有客户端输出缓冲区、查询缓冲区、AOF重写缓冲区和主从复制的backlog。
+used_memory_overhead:11540400
+Redis服务器启动时消耗的内存
+used_memory_startup:786632
+数据占用的内存大小，即used_memory - sed_memory_overhead
+used_memory_dataset:64992
+数据占用的内存大小的百分比，
+100%*(used_memory_dataset/(used_memory-used_memory_startup))
+used_memory_dataset_perc:0.60%
+整个系统内存
+total_system_memory:4145299456
+以更直观的格式显示整个系统内存
+total_system_memory_human:3.86G
+Lua脚本存储占用的内存
+used_memory_lua:37888
+以更直观的格式显示Lua脚本存储占用的内存
+used_memory_lua_human:37.00K
+Redis实例的最大内存配置
+maxmemory:134217728
+以更直观的格式显示Redis实例的最大内存配置
+maxmemory_human:128.00M
+当达到maxmemory时的淘汰策略
+maxmemory_policy:allkeys-lru
+即内存碎片比率，该值是used_memory_rss / used_memory的比值。
+mem_fragmentation_ratio一般大于1，且该值越大，内存碎片比例越大。
+如果mem_fragmentation_ratio<1，说明Redis使用了虚拟内存，由于虚拟内存的媒介是磁盘，比内存速度要慢很多，当这种情况出现时，应该及时排查，如果内存不足应该及时处理，如增加Redis节点、增加Redis服务器的内存、优化应用等。
+一般来说，mem_fragmentation_ratio在1.03左右是比较健康的状态
+mem_fragmentation_ratio:1.63
+内存分配器
+mem_allocator:jemalloc-4.0.3
+active_defrag_running：表示没有活动的defrag任务正在运行，1表示有活动的defrag任务正在运行（defrag:表示内存碎片整理）
+active_defrag_running:0
+0表示不存在延迟释放的挂起对象
+lazyfree_pending_objects:0
