@@ -308,6 +308,19 @@ config rewrite
 
 MAXMEMORY
 
+# 慢日志
+
+记录执行时间超过
+
+```
+config get slowlog-log-slower-than
+config get slowlog-max-len
+
+config set slowlog-log-slower-than 10000
+config set slowlog-max-len 500
+config rewrite
+```
+
 # 问题
 
 
