@@ -1,3 +1,9 @@
+#!/bin/bash
+
+echo "systemctl_node_exporter.sh"
+kill $(ps aux | grep /root/node_exporter | awk '{print $2}')
+systemctl status node_exporter
+systemctl stop node_exporter
 tee /etc/systemd/system/node_exporter.service <<-'EOF'
 [Unit]
 Description=Node Exporter
