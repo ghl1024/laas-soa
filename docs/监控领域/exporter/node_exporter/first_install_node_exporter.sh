@@ -14,4 +14,4 @@ ps aux | grep node_exporter
 sleep 2
 tail -f 100 node_exporter.log
 # stop the node_exporter process
-#kill $(ps aux | grep 'node_exporter' | awk '{print $2}')
+kill $(ps aux | grep '~/node_exporter' | awk '{print $2}')
