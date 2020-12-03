@@ -7,8 +7,8 @@ groups:
         labels:
           status: 非常严重
         annotations:
-          summary: "{{$labels.instance}}:服务器宕机"
-          description: "{{$labels.instance}}:服务器延时超过5分钟"
+          summary: "服务器宕机"
+          description: "服务器延时超过5分钟 ({{$labels.instance}}-{{$labels.nodename}})"
 
       - alert: CPU使用情况
         expr: 100-(avg(irate(node_cpu_seconds_total{mode="idle"}[5m])) by(instance)* 100) > 80
@@ -16,17 +16,17 @@ groups:
         labels:
           status: 一般告警
         annotations:
-          summary: "{{$labels.mountpoint}} CPU使用率过高！"
-          description: "{{$labels.mountpoint }} CPU使用大于80%(目前使用:{{$value}}%)"
+          summary: "CPU使用率过高！"
+          description: "CPU使用大于80%(目前使用:{{$value}}%) ({{$labels.instance}}-{{$labels.nodename}})"
 
       - alert: 内存使用
-        expr: round(100- node_memory_MemAvailable_bytes/node_memory_MemTotal_bytes*100) > 90
+        expr: round(100- node_memory_MemAvailable_bytes/node_memory_MemTotal_bytes*100) > 80
         for: 1m
         labels:
           severity: warning
         annotations:
-          summary: "{{$labels.instance}}:内存使用率过高"
-          description: "{{$labels.instance}}:当前使用率{{ $value }}%"
+          summary: "内存使用率过高"
+          description: "当前使用率{{ $value }}% ({{$labels.instance}}-{{$labels.nodename}})"
 
       - alert: IO性能
         expr: 100-(avg(irate(node_disk_io_time_seconds_total[1m])) by(instance)* 100) < 60
@@ -34,8 +34,8 @@ groups:
         labels:
           status: 严重告警
         annotations:
-          summary: "{{$labels.mountpoint}} 流入磁盘IO使用率过高！"
-          description: "{{$labels.mountpoint }} 流入磁盘IO大于60%(目前使用:{{$value}})"
+          summary: "流入磁盘IO使用率过高"
+          description: "流入磁盘IO大于60%(目前使用:{{$value}}) ({{$labels.instance}}-{{$labels.nodename}})"
 
       - alert: 网络
         expr: ((sum(rate (node_network_receive_bytes_total{device!~'tap.*|veth.*|br.*|docker.*|virbr*|lo*'}[5m])) by (instance)) / 100) > 102400
@@ -43,8 +43,8 @@ groups:
         labels:
           status: 严重告警
         annotations:
-          summary: "{{$labels.mountpoint}} 流入网络带宽过高！"
-          description: "{{$labels.mountpoint }}流入网络带宽持续2分钟高于100M. RX带宽使用率{{$value}}"
+          summary: "流入网络带宽过高"
+          description: "流入网络带宽持续2分钟高于100M. RX带宽使用率{{$value}} ({{$labels.instance}}-{{$labels.nodename}})"
 
       - alert: TCP会话
         expr: node_netstat_Tcp_CurrEstab > 1000
@@ -52,8 +52,8 @@ groups:
         labels:
           status: 严重告警
         annotations:
-          summary: "{{$labels.mountpoint}} TCP_ESTABLISHED过高！"
-          description: "{{$labels.mountpoint }} TCP_ESTABLISHED大于1000%(目前使用:{{$value}}%)"
+          summary: "TCP_ESTABLISHED过高"
+          description: "TCP_ESTABLISHED大于1000%(目前使用:{{$value}}%) ({{$labels.instance}}-{{$labels.nodename}})"
 
       - alert: 磁盘容量
         expr: 100-(node_filesystem_free_bytes{fstype=~"ext4|xfs"}/node_filesystem_size_bytes {fstype=~"ext4|xfs"}*100) > 80
@@ -61,5 +61,5 @@ groups:
         labels:
           status: 严重告警
         annotations:
-          summary: "{{$labels.mountpoint}} 磁盘分区使用率过高！"
-          description: "{{$labels.mountpoint }} 磁盘分区使用大于80%(目前使用:{{$value}}%)"
+          summary: "磁盘分区使用率过高"
+          description: "磁盘分区使用大于80%(目前使用:{{$value}}%) ({{$labels.instance}}-{{$labels.nodename}})"
