@@ -74,3 +74,22 @@ https://grafana.com/grafana/dashboards/11442
 测试访问：
 
 http://192.168.2.21:9141/metrics
+
+# 告警
+
+zk.rules
+
+```
+groups:
+  - name: zk
+    rules:
+      - alert: ZkDown
+        expr: zk_up == 0
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "zk down (instance {{ $labels.zk_host }})"
+          description: "zk instance is down\n  VALUE = {{ $value }}\n  LABELS: {{ $labels }}"
+```
+
