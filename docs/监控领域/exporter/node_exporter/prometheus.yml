@@ -1,4 +1,4 @@
-  - job_name: 'h_5.38'
+- job_name: 'h_5.38'
     static_configs:
       - targets: ['192.168.5.38:9100']
         labels:
