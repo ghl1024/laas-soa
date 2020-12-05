@@ -29,7 +29,7 @@ const set_skywalking_monitor = async function(to, from, next) {
   const skywalking_config = {
     service: package_json.name,
     serviceVersion: package_json.version,
-    pagePath: location.href.substring(0, location.href.indexOf('#')) + '#' + to.path,
+    pagePath: location.href.substring(0, location.href.indexOf('#') + 1) + to.path,
     jsErrors: true,
     apiErrors: true,
     resourceErrors: true,
@@ -54,3 +54,7 @@ const set_skywalking_monitor = async function(to, from, next) {
 ![image-20201204200331763](skywalking前端监控.assets/image-20201204200331763.png)
 
 ![image-20201204200334641](skywalking前端监控.assets/image-20201204200334641.png)
+
+# 接下来
+
+ajax 请求情况
