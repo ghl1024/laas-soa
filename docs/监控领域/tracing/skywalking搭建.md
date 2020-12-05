@@ -18,7 +18,7 @@ docker run -d \
   -p 9200:9200 -p 9300:9300 \
   -v /data/tristan/elasticsearch/data:/usr/share/elasticsearch/data \
   -e "discovery.type=single-node" \
-  -e "ES_JAVA_OPTS=-Xms8g -Xmx8g" \
+  -e "ES_JAVA_OPTS=-Xms4g -Xmx4g" \
   -e "bootstrap.memory_lock=true" --ulimit memlock=-1:-1 \
   --ulimit nofile=65535:65535 \
   docker.elastic.co/elasticsearch/elasticsearch:7.10.0
