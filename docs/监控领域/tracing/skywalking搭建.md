@@ -1,8 +1,24 @@
 整体分为ui、oap、es 三部分组成
 
-192.168.2.35
+192.168.2.20
 
 # es
+
+假如你下载镜像特别慢:
+
+```
+docker save -o elasticsearch.tar dock
+scp elasticsearch.tar root@192.168.2.20:/root
+docker import  elasticsearch.tar docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+```
+
+
+
+```
+docker pull elasticsearch:7.9.3
+```
+
+安装
 
 ```
 rm -rf /data/tristan/elasticsearch
@@ -21,7 +37,7 @@ docker run -d \
   -e "ES_JAVA_OPTS=-Xms4g -Xmx4g" \
   -e "bootstrap.memory_lock=true" --ulimit memlock=-1:-1 \
   --ulimit nofile=65535:65535 \
-  docker.elastic.co/elasticsearch/elasticsearch:7.10.0
+  elasticsearch:7.9.3
 
 docker logs -f --tail 100 elasticsearch
 
@@ -35,6 +51,13 @@ curl -X GET "localhost:9200/_cat/nodes?v&pretty"
 安装
 
 ```
+rm -rf /data/tristan/skywalking
+mkdir -p /data/tristan/skywalking && chmod 777 /data/tristan/skywalking
+docker run -d --name oap apache/skywalking-oap-server:8.3.0-es7
+docker cp oap:/skywalking/config/ /data/tristan/skywalking/
+sleep 10
+docker stop oap && docker rm oap
+
 docker stop oap && docker rm oap
 
 docker run -d \
@@ -42,8 +65,10 @@ docker run -d \
   --restart=always \
   -p 11800:11800 -p 12800:12800 \
   -v /etc/localtime:/etc/localtime \
-  -e SW_STORAGE=elasticsearch7 -e SW_STORAGE_ES_CLUSTER_NODES=192.168.2.35:9200 \
+  -v /data/tristan/skywalking/config:/skywalking/config \
+  -e SW_STORAGE=elasticsearch7 -e SW_STORAGE_ES_CLUSTER_NODES=192.168.2.20:9200 \
   apache/skywalking-oap-server:8.3.0-es7
+
 
 docker logs -f --tail 100 oap
 ```
@@ -59,7 +84,7 @@ docker logs -f --tail 100 oap
 ```
 docker stop ui && docker rm ui
 
-docker run --name ui -p 8081:8080 -v /etc/localtime:/etc/localtime --restart always -d -e SW_OAP_ADDRESS=192.168.2.35:12800 apache/skywalking-ui:8.3.0
+docker run --name ui -p 8081:8080 -v /etc/localtime:/etc/localtime --restart always -d -e SW_OAP_ADDRESS=192.168.2.20:12800 apache/skywalking-ui:8.3.0
 
 docker logs -f --tail 100 ui
 ```
