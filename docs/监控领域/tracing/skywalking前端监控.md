@@ -48,7 +48,9 @@ router.beforeEach(set_skywalking_monitor)
 
 # 效果
 
-目前能看到各个系统的前端访问记录/时间、错误日志
+目前能看到各个系统的前端页面访问记录的时间
+
+控制台的打印日志
 
 ![image-20201204200328447](skywalking前端监控.assets/image-20201204200328447.png)
 
