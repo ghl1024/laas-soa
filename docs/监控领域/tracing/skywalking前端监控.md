@@ -41,6 +41,7 @@ const set_skywalking_monitor = async function(to, from, next) {
   ClientMonitor.setPerformance(skywalking_config)
   next()
 }
+router.beforeEach(set_skywalking_monitor)
 ```
 
 

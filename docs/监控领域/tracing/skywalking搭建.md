@@ -37,7 +37,7 @@ docker run -d \
   -e "ES_JAVA_OPTS=-Xms4g -Xmx4g" \
   -e "bootstrap.memory_lock=true" --ulimit memlock=-1:-1 \
   --ulimit nofile=65535:65535 \
-  elasticsearch:7.9.3
+  docker.elastic.co/elasticsearch/elasticsearch:7.10.0
 
 docker logs -f --tail 100 elasticsearch
 
@@ -56,6 +56,7 @@ mkdir -p /data/tristan/skywalking && chmod 777 /data/tristan/skywalking
 docker run -d --name oap apache/skywalking-oap-server:8.3.0-es7
 docker cp oap:/skywalking/config/ /data/tristan/skywalking/
 sleep 10
+ll /data/tristan/skywalking/config/
 docker stop oap && docker rm oap
 
 docker stop oap && docker rm oap
@@ -66,7 +67,7 @@ docker run -d \
   -p 11800:11800 -p 12800:12800 \
   -v /etc/localtime:/etc/localtime \
   -v /data/tristan/skywalking/config:/skywalking/config \
-  -e SW_STORAGE=elasticsearch7 -e SW_STORAGE_ES_CLUSTER_NODES=192.168.2.20:9200 \
+  -e SW_STORAGE=elasticsearch7 -e SW_STORAGE_ES_CLUSTER_NODES=192.168.2.35:9200 \
   apache/skywalking-oap-server:8.3.0-es7
 
 
@@ -84,7 +85,7 @@ docker logs -f --tail 100 oap
 ```
 docker stop ui && docker rm ui
 
-docker run --name ui -p 8081:8080 -v /etc/localtime:/etc/localtime --restart always -d -e SW_OAP_ADDRESS=192.168.2.20:12800 apache/skywalking-ui:8.3.0
+docker run --name ui -p 8080:8080 -v /etc/localtime:/etc/localtime --restart always -d -e SW_OAP_ADDRESS=192.168.2.20:12800 apache/skywalking-ui:8.3.0
 
 docker logs -f --tail 100 ui
 ```
