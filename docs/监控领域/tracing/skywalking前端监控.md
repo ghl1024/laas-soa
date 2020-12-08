@@ -1,5 +1,7 @@
 # 配置nginx代理oap
 
+如果有多层nginx, 建议放到内层nginx中
+
 ```
 		location /browser {
 			proxy_pass http://192.168.2.35:12800;

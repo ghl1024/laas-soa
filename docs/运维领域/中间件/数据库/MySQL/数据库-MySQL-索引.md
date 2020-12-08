@@ -91,10 +91,9 @@ like '%<text_content>', 但是 like 'fdsfs%'又没问题
 *
 /
 exist
-!=
+!= 或者 <>
 is null
 or <其他条件没有索引>
-in(<值数量超过2>), 但是 in(1)又没有问题
 not in()
 <函数>(<字段>)
 ```
