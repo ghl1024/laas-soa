@@ -1,0 +1,1 @@
+直接使用helm安装prometheus operator即可
