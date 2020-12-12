@@ -1,1 +1,3 @@
 直接使用helm安装prometheus operator即可
+
+使用联邦机制
