@@ -18,14 +18,16 @@ npm install skywalking-client-js --save
 
 # 项目配置
 
-每一个项目的package.json中的name都要用项目名称且不能与其他项目重复
+每一个项目的package.json中的name都要用项目名称且不能与其他项目重复, version尽量保持有意义
 
 # 配置在路由/公共js中
+
+注意router.beforeEach在实际项目中最好只声明一次
 
 ```
 import ClientMonitor from 'skywalking-client-js'
 
-const router = createRouter()
+const router = createRouter() // 在router创建之后
 const package_json = require('../../package.json')
 const set_skywalking_monitor = async function(to, from, next) {
   const skywalking_config = {
@@ -39,14 +41,16 @@ const set_skywalking_monitor = async function(to, from, next) {
     enableSPA: true,
     autoTracePerf: true
   }
-  ClientMonitor.register(skywalking_config)
-  ClientMonitor.setPerformance(skywalking_config)
+  try {
+    ClientMonitor.register(skywalking_config)
+    ClientMonitor.setPerformance(skywalking_config)
+  } catch (e) {
+    console.log(e)
+  }
   next()
 }
 router.beforeEach(set_skywalking_monitor)
 ```
-
-
 
 # 效果
 

@@ -1,13 +1,5 @@
 # 数据源
 
-## 使用jmx方式(暂未使用)
-
-```
-curl -O https://repo1.maven.org/maven2/io/prometheus/jmx/jmx_prometheus_javaagent/0.14.0/jmx_prometheus_javaagent-0.14.0.jar
-
-java -javaagent:./jmx_prometheus_javaagent-0.14.0.jar=8080:config.yaml -jar wms-dal.jar
-```
-
 ## springboot项目集成监控依赖(推荐使用)
 
 ### 调整项目依赖
@@ -15,11 +7,11 @@ java -javaagent:./jmx_prometheus_javaagent-0.14.0.jar=8080:config.yaml -jar wms-
 如果有顶级父pom或者公共pom, 建议在上层pom中加上以下依赖
 
 ```
+        <!-- java项目监控 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
-        <!-- Micrometer Prometheus registry  -->
         <dependency>
             <groupId>io.micrometer</groupId>
             <artifactId>micrometer-registry-prometheus</artifactId>
@@ -34,79 +26,58 @@ management:
     web:
       exposure:
         include: prometheus,info
+  metrics:
+    tags:
+      application: ${spring.application.name}
 ```
-
-
 
 # 数据抓取点
 
-## 简单网络
-
-配置抓取点
-
-```
-  - job_name: 'springboot_exporter_test'
-    metrics_path: '/xxx.stage/prometheus'
-    static_configs:
-    - targets: ['<prometheus_ip>:80']
-```
-
-## 复杂网络情况下的调整
-
-### 使用kubernetes api server进行转发代理
-
-
-
-### 方式1: 使用nginx嵌入目标环境中进行代理网络
-
-如果监控体系在外部, 而服务在k8s内部
-
-网络依然是从prometheus发起请求到服务端点
-
-打通网络:  nginx, 通过nginx去访问k8s中的svc, 外部访问nginx即可
-
-```
-deployment:
-	name: nginx
-	port: 80
-```
-
-在prometheus抓取点上全部加上前缀: /<project_name>.<namespace_name>, 例如: portal-admin.stage
-
-targets上指向nginx
-
-```
-  - job_name: 'springboot_exporter_test'
-    metrics_path: '/xxx.stage/prometheus'
-    static_configs:
-    - targets: ['<prometheus_ip>:80']
-```
-
-这种问题在于会导致抓取instance都是一样的, 需要通过判断路径实现区分
-
-### 方式2: 使用prometheus联邦机制部署子prometheus嵌入到目标环境中代理网络
-
 k8s中直接使用prometheus operator
 
+为每一个服务添加ServiceMonitor
 
+统一监控体系使用联邦机制同步K8S中的prometheus
 
-创建 prometheus namespace
-
-创建 prometheus.yml文件的configmap
-
-创建 prometheus deployment
-
-创建 prometheus svc
-
-创建 nginx 代理
-
-#### 配置prometheus scrape抓取点
+假设svc的定义如下:
 
 ```
-  - job_name: 'springboot_exporter_test'
-    metrics_path: '/wms/dal/prometheus'
-    static_configs:
-    - targets: ['172.30.1.153:9778']
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    traffic.sidecar.istio.io/excludeOutboundIPRanges: 0.0.0.0/0
+  labels:
+    app: <service_name>
+  name: <service_name>
+  namespace: <namespace_name>
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 80
+  selector:
+    app: <service_name>
+```
+
+那么:
+
+```
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: <service_name>
+  name: app: <service_name>
+  namespace: <namespace_name>
+spec:
+  endpoints:
+  - interval: 15s
+    port: 80
+    path: "/prometheus"
+  selector:
+    matchLabels:
+      app: <service_name>
 ```
 
 # 展示效果
