@@ -1,7 +1,9 @@
 # official repo address: https://github.com/prometheus/node_exporter/releases
+yum install -y wget
 wget https://github.com/prometheus/node_exporter/releases/download/v1.0.1/node_exporter-1.0.1.linux-amd64.tar.gz
 tar -zvxf node_exporter-1.0.1.linux-amd64.tar.gz
 cp node_exporter-1.0.1.linux-amd64/node_exporter node_exporter
+rm -rf node_exporter-1.0.1.linux-amd64 node_exporter-1.0.1.linux-amd64.tar.gz
 # debug mode running
 #./node_exporter-1.0.1.linux-amd64/node_exporter
 # backend mode running

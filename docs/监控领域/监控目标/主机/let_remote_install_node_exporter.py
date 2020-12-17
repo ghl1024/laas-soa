@@ -60,8 +60,8 @@ def setup(item):
     # 加载数据
     # 分发执行
     # 传输node_exporter并授予权限
-    # transfer_remote_file(item, password, "node_exporter", "node_exporter")
-    # exec_remote_shell(item, password, "chmod +x node_exporter")
+    transfer_remote_file(item, password, "node_exporter", "node_exporter")
+    exec_remote_shell(item, password, "chmod +x node_exporter")
     # 传输系统化node_exporter指令文件并授予权限
     transfer_remote_file(item, password, "systemctl_node_exporter.sh", "systemctl_node_exporter.sh")
     exec_remote_shell(item, password, "chmod +x systemctl_node_exporter.sh")

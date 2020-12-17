@@ -60,7 +60,9 @@ spec:
     app: <service_name>
 ```
 
-那么:
+那么serviceMonitor的定义如下: 
+
+注意: 如果项目带了context_path那么需要调整在path前面带上context_path
 
 ```
 apiVersion: monitoring.coreos.com/v1
@@ -79,6 +81,17 @@ spec:
     matchLabels:
       app: <service_name>
 ```
+
+调试阶段可以使用
+
+```
+  - job_name: 'java_exporter'
+    metrics_path: '/wms/dal/prometheus'
+    static_configs:
+    - targets: ['172.30.1.153:9778']
+```
+
+
 
 # 展示效果
 

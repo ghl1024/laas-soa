@@ -8,6 +8,14 @@ with open("target_server", encoding="utf-8")as f:
         target_server_list.append(file_line)
 
 result = ""
+result += """
+- job_name: 'node_exporter'
+  static_configs:"""
+"""
+  - job_name: 'java_exporter'
+    static_configs:
+    - targets: ['172.30.1.153:9778']
+"""
 for item in target_server_list:
     index = item.index("|")
     host = item[:index].strip().replace("\n", "").replace("\t", "")
@@ -17,11 +25,9 @@ for item in target_server_list:
     host_suffix = host_suffix[host_suffix.find(".") + 1:]
     # print("host: %s \t name: %s" % (host, name))
     result += """
-  - job_name: 'h_%s'
-    static_configs:
-      - targets: ['%s:9100']
-        labels:
-          nodename: '%s'""" % (host_suffix, host, name)
+  - targets: ['%s:9100']
+    labels:
+      nodename: '%s'""" % (host, name)
 
 """
         labels:
