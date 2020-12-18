@@ -1,5 +1,125 @@
 - job_name: 'node_exporter'
-  static_configs:
-  - targets: ['192.168.5.38:9100']
-    labels:
-      nodename: 'online-skywalking-Es'
+    static_configs:
+    - targets: ['192.168.90.223:9100']
+      labels:
+        nodename: 'k8s-etcd3'
+    - targets: ['172.30.1.32:9100']
+      labels:
+        nodename: '容器访问代理'
+    - targets: ['192.168.90.204:9100']
+      labels:
+        nodename: 'k8s Node2'
+    - targets: ['192.168.90.220:9100']
+      labels:
+        nodename: 'jenkins slave'
+    - targets: ['192.168.90.221:9100']
+      labels:
+        nodename: 'k8s master1'
+    - targets: ['192.168.90.193:9100']
+      labels:
+        nodename: '运维系统'
+    - targets: ['192.168.90.196:9100']
+      labels:
+        nodename: 'k8s Node5'
+    - targets: ['192.168.90.234:9100']
+      labels:
+        nodename: 'PHP 仓库'
+    - targets: ['192.168.90.190:9100']
+      labels:
+        nodename: 'gitlab'
+    - targets: ['192.168.90.242:9100']
+      labels:
+        nodename: 'harbor'
+    - targets: ['192.168.90.194:9100']
+      labels:
+        nodename: 'stage-182 tikv2'
+    - targets: ['192.168.90.181:9100']
+      labels:
+        nodename: 'stage-mariadb'
+    - targets: ['192.168.90.182:9100']
+      labels:
+        nodename: 'stage-tidb'
+    - targets: ['192.168.90.186:9100']
+      labels:
+        nodename: 'shoptoc'
+    - targets: ['192.168.90.222:9100']
+      labels:
+        nodename: 'k8s master2'
+    - targets: ['192.168.90.198:9100']
+      labels:
+        nodename: 'k8s Node6'
+    - targets: ['192.168.90.202:9100']
+      labels:
+        nodename: 'k8s Node7'
+    - targets: ['192.168.90.183:9100']
+      labels:
+        nodename: 'kafka'
+    - targets: ['192.168.90.229:9100']
+      labels:
+        nodename: 'tidb-dev'
+    - targets: ['192.168.90.217:9100']
+      labels:
+        nodename: '思尧 传输服务'
+    - targets: ['192.168.90.237:9100']
+      labels:
+        nodename: '禅道'
+    - targets: ['192.168.90.201:9100']
+      labels:
+        nodename: 'jenkins slave'
+    - targets: ['192.168.90.199:9100']
+      labels:
+        nodename: 'SkyWalking ES'
+    - targets: ['192.168.90.192:9100']
+      labels:
+        nodename: 'SkyWalking'
+    - targets: ['192.168.90.230:9100']
+      labels:
+        nodename: 'app090230'
+    - targets: ['192.168.90.232:9100']
+      labels:
+        nodename: 'dev090232'
+    - targets: ['192.168.90.235:9100']
+      labels:
+        nodename: 'dev090235'
+    - targets: ['192.168.90.233:9100']
+      labels:
+        nodename: 'dev090233'
+    - targets: ['192.168.90.203:9100']
+      labels:
+        nodename: 'ES 日志'
+    - targets: ['192.168.90.238:9100']
+      labels:
+        nodename: 'dev238'
+    - targets: ['192.168.90.236:9100']
+      labels:
+        nodename: '旧分拣测试系统'
+    - targets: ['192.168.90.252:9100']
+      labels:
+        nodename: 'stage-es'
+    - targets: ['192.168.90.187:9100']
+      labels:
+        nodename: 'es-pre'
+    - targets: ['192.168.90.228:9100']
+      labels:
+        nodename: 'k8s Node3'
+    - targets: ['172.30.1.30:9100']
+      labels:
+        nodename: 'vpn'
+    - targets: ['172.30.1.32:9100']
+      labels:
+        nodename: '开发测试访问代理 Web'
+    - targets: ['192.168.90.224:9100']
+      labels:
+        nodename: 'k8s Node2'
+    - targets: ['192.168.90.155:9100']
+      labels:
+        nodename: 'mysql'
+    - targets: ['192.168.90.205:9100']
+      labels:
+        nodename: 'k8s Node8'
+    - targets: ['172.30.1.31:9100']
+      labels:
+        nodename: 'pre-mysql数据仓库'
+    - targets: ['192.168.90.131:9100']
+      labels:
+        nodename: '运维系统DB'

@@ -63,6 +63,9 @@ endpoint_relation_cpm = from(EndpointRelation.*).filter(detectPoint == DetectPoi
 endpoint_relation_resp_time = from(EndpointRelation.rpcLatency).filter(detectPoint == DetectPoint.SERVER).longAvg();
 endpoint_relation_sla = from(EndpointRelation.*).filter(detectPoint == DetectPoint.SERVER).percent(status == true);
 endpoint_relation_percentile = from(EndpointRelation.rpcLatency).filter(detectPoint == DetectPoint.SERVER).percentile(10); // Multiple values including p50, p75, p90, p95, p99
+endpoint_relation_error_resp_time = from(EndpointRelation.rpcLatency).filter(detectPoint == DetectPoint.SERVER).filter(status == false).longAvg();
+// Endpoint error
+
 
 database_access_resp_time = from(DatabaseAccess.latency).longAvg();
 database_access_sla = from(DatabaseAccess.*).percent(status == true);

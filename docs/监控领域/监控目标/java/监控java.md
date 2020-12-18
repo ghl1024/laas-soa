@@ -4,7 +4,9 @@
 
 ### 调整项目依赖
 
-如果有顶级父pom或者公共pom, 建议在上层pom中加上以下依赖
+如果有顶级父pom或者公共pom, 建议在上层pom中加上以下依赖:
+
+备注: 上层pom意味着: common项目或者parent项目中的pom.xml
 
 ```
         <!-- java项目监控 -->
@@ -25,7 +27,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: prometheus,info
+        include: prometheus,info, metrics
   metrics:
     tags:
       application: ${spring.application.name}

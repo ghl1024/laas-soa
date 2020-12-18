@@ -9,12 +9,12 @@ with open("target_server", encoding="utf-8")as f:
 
 result = ""
 result += """
-- job_name: 'node_exporter'
-  static_configs:"""
+  - job_name: 'node_exporter'
+    static_configs:"""
 """
-  - job_name: 'java_exporter'
-    static_configs:
-    - targets: ['172.30.1.153:9778']
+    - job_name: 'java_exporter'
+      static_configs:
+      - targets: ['172.30.1.153:9778']
 """
 for item in target_server_list:
     index = item.index("|")
@@ -25,14 +25,9 @@ for item in target_server_list:
     host_suffix = host_suffix[host_suffix.find(".") + 1:]
     # print("host: %s \t name: %s" % (host, name))
     result += """
-  - targets: ['%s:9100']
-    labels:
-      nodename: '%s'""" % (host, name)
-
-"""
-        labels:
-          hostname: '%s'
-"""
+    - targets: ['%s:9100']
+      labels:
+        nodename: '%s'""" % (host, name)
 with open('prometheus.yml', 'w', encoding="utf-8") as f:
     f.write(result.strip())
 print(result)

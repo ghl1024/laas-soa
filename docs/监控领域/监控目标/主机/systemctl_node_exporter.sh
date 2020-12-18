@@ -11,7 +11,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/root/node_exporter
+ExecStart=/root/node_exporter --web.listen-address=0.0.0.0:9100
 
 [Install]
 WantedBy=multi-user.target
