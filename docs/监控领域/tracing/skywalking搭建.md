@@ -67,7 +67,7 @@ docker run -d \
   -p 11800:11800 -p 12800:12800 \
   -v /etc/localtime:/etc/localtime \
   -v /data/tristan/skywalking/config:/skywalking/config \
-  -e SW_STORAGE=elasticsearch7 -e SW_STORAGE_ES_CLUSTER_NODES=192.168.2.35:9200 \
+  -e SW_STORAGE=elasticsearch7 -e SW_STORAGE_ES_CLUSTER_NODES=192.168.5.5:9200 \
   apache/skywalking-oap-server:8.3.0-es7
 
 

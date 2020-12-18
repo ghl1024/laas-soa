@@ -1,0 +1,11 @@
+groups:
+  - name: kubernetes
+    rules:
+      - alert: kubernetes-pod-资源-内存
+        expr: sum(container_memory_working_set_bytes{id!="/",container!=""}) by (namespace, pod,container) / sum(kube_pod_container_resource_limits_memory_bytes{id!="/",container!=""}) by (namespace, pod,container) > 0.9
+        for: 1m
+        labels:
+          status: 非常严重
+        annotations:
+          summary: "超标"
+          description: "kubernetes-pod-资源-内存超标 ({{$labels.namespace}}--{{$labels.pod}}--{{$labels.container}})"
