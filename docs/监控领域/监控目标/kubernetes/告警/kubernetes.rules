@@ -9,3 +9,11 @@ groups:
         annotations:
           summary: "超标"
           description: "kubernetes-pod-资源-内存超标 ({{$labels.namespace}}--{{$labels.pod}}--{{$labels.container}})"
+      - alert: kubernetes-deployment-副本数
+        expr: sum(kube_deployment_status_replicas_available) by (namespace, deployment) <1
+        for: 1m
+        labels:
+          status: 非常严重
+        annotations:
+          summary: "过低"
+          description: "kubernetes-deployment-副本数为零 ({{$labels.namespace}}--{{$labels.deployment}}"

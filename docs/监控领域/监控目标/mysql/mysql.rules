@@ -1,0 +1,11 @@
+groups:
+  - name: MySQL
+    rules:
+      - alert: MySQL-连接
+        expr: avg(mysql_global_status_threads_connected) by (instance) / avg(mysql_global_status_max_used_connections) by (instance) > 0.8
+        for: 1m
+        labels:
+          status: 非常严重
+        annotations:
+          summary: "超标"
+          description: "MySQL-连接超标 ({{$labels.mysqlname}}):{{$value}}"
