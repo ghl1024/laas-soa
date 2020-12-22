@@ -33,6 +33,8 @@ management:
       application: ${spring.application.name}
 ```
 
+验证: 用浏览器访问 http://<地址>:<端口>/<context_path>/prometheus 看到大量的metrics数据
+
 # 数据抓取点
 
 k8s中直接使用prometheus operator
@@ -62,9 +64,31 @@ spec:
     app: <service_name>
 ```
 
+查看svc
+
+```
+kubectl get namespace
+
+kubectl -n dev get svc|grep custshop-admin
+kubectl -n dev describe svc custshop-admin
+
+kubectl delete deployments/load-generator
+kubectl run --tty load-generator --image=busybox /bin/sh
+kubectl exec --stdin --tty load-generator-7fbcc7489f-v2m9s /bin/sh
+
+
+wget http://custshop-admin.dev.svc.cluster.local/ping
+wget http://custshop-admin.dev.svc.cluster.local/custadmin/prometheus
+
+```
+
+
+
 那么serviceMonitor的定义如下: 
 
 注意: 如果项目带了context_path那么需要调整在path前面带上context_path
+
+​		或者  spring.mvc.servlet.path
 
 ```
 apiVersion: monitoring.coreos.com/v1
@@ -72,7 +96,7 @@ kind: ServiceMonitor
 metadata:
   labels:
     app: <service_name>
-  name: app: <service_name>
+  name: <service_name>
   namespace: <namespace_name>
 spec:
   endpoints:
@@ -84,13 +108,37 @@ spec:
       app: <service_name>
 ```
 
+案例:
+
+```
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    app: custshop-admin
+  name: custshop-admin
+  namespace: dev
+spec:
+  endpoints:
+  - interval: 15s
+    port: 80
+    path: "/prometheus"
+  selector:
+    matchLabels:
+      app: custshop-admin
+```
+
+
+
 调试阶段可以使用
 
 ```
-  - job_name: 'java_exporter'
-    metrics_path: '/wms/dal/prometheus'
+  - job_name: 'java_jmx_exporter'
+    metrics_path: '/'
     static_configs:
-    - targets: ['172.30.1.153:9778']
+    - targets:
+      - custshop-admin.dev.svc.cluster.local:1234
 ```
 
 

@@ -92,7 +92,70 @@ docker logs -f --tail 100 ui
 
 
 
+# nginx
+
+使用nginx代理ui
+
+nginx访问时进行用户名-密码认证
+
+## 创建nginx用户名-密码登录文件
+
+```
+yum  -y install httpd-tools
+htpasswd -c passwd admin
+> 输入密码 两次
+```
+
+部署
+
+```
+rm -rf /data/tristan/nginx
+mkdir -p /data/tristan/nginx
+
+sudo cat >> /data/tristan/nginx/default.conf <<EOF
+server {
+    listen 80;
+	
+    auth_basic "Please input password";
+    auth_basic_user_file /data/tristan/nginx/passwd;
+    gzip on;
+    gzip_vary on;
+    gzip_disable "msie6";
+    gzip_comp_level 6;
+    gzip_min_length 1100;
+    gzip_buffers 16 8k;
+    gzip_proxied any;
+    gzip_types
+        text/plain
+        text/css
+        text/js
+        text/xml
+        text/javascript
+        application/javascript
+        application/x-javascript
+        application/json
+        application/xml
+        application/xml+rss;
 
 
+	location / {
+        proxy_pass http://192.168.2.20:8080;
+    }
+}
+EOF
 
+
+docker stop nginx
+docker rm   nginx
+
+
+docker run -d \
+  --name=nginx --restart=always \
+  -p 80:80 \
+  -v /data/tristan/nginx/default.conf:/etc/nginx/conf.d/default.conf \
+  -v  /data/tristan/nginx/passwd:/data/tristan/nginx/passwd \
+  nginx:1.19.6-alpine-perl
+
+docker logs -f --tail 100 nginx
+```
 
