@@ -1,10 +1,12 @@
+# 启用exporter(jmx_exporter)
+
 准备好jmx文件
 
 jmx_prometheus_javaagent-0.14.0.jar
 
 httpserver_sample_config.yml.txt
 
-
+修改构建脚本, 在构建时拷贝jmx_exporter和jmx_config.yml进去, 使用-javaagent启用jmx_exporter
 
 启动
 
@@ -23,6 +25,10 @@ java -javaagent:D:/server_files/java_metrics_monitor/jmx_prometheus_javaagent-0.
 ```
 java -javaagent:/jmx_prometheus_javaagent-0.14.0.jar=1234:/jmx_config.yml -jar wms-dal.jar
 ```
+
+
+
+
 
 tomcat.yml
 
@@ -130,5 +136,20 @@ rules:
 
 
 
-# grafana
+# 配置prometheus-scrape数据抓取点
 
+```
+    - job_name: 'java_jmx_exporter'
+      metrics_path: '/'
+      static_configs:
+      - targets:
+        - custshop-admin.dev.svc.cluster.local:1234
+```
+
+
+
+# 配置grafana-dashboard
+
+JVM dashboard-1608601338377.json
+
+tomcat-dashboard_rev10.json
