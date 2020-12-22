@@ -44,6 +44,14 @@ docker logs -f --tail 100 elasticsearch
 curl -X GET "localhost:9200/_cat/nodes?v&pretty"
 ```
 
+调优
+
+```
+curl -XGET localhost:9200/_cluster/allocation/explain?pretty
+
+curl -X PUT localhost:9200/_cluster/settings -H "Content-Type: application/json" -d '{ "persistent": { "cluster.max_shards_per_node": "4000" } }'
+```
+
 
 
 # oap

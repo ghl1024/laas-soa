@@ -1,3 +1,10 @@
+# 项目中集成监控组件
+
+        <!-- java项目监控 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
 # 启用exporter(jmx_exporter)
 
 准备好jmx文件
@@ -138,12 +145,58 @@ rules:
 
 # 配置prometheus-scrape数据抓取点
 
+修改service
+
+```
+kubectl -n dev edit service purchase-server
+
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: http1
+    port: 1234
+    protocol: TCP
+    targetPort: 1234
+    
+    
+```
+
+测试jmx_exporter端点是否可用
+
+```
+kubectl delete deployments/load-generator
+kubectl run -it --tty load-generator --image=busybox /bin/sh
+kubectl exec --stdin --tty load-generator-7fbcc7489f-v2m9s /bin/sh
+
+wget http://purchase-server.dev.svc.cluster.local:1234
+```
+
+调整prometheus数据抓取点
+
+```
+kubectl -n kube-system edit configmaps prometheus-config -o yaml
+kubectl -n kube-system get configmaps prometheus-config -o yaml > aliyun_prometheus_configmap.yaml
+```
+
+内容如下:
+
 ```
     - job_name: 'java_jmx_exporter'
       metrics_path: '/'
       static_configs:
       - targets:
         - custshop-admin.dev.svc.cluster.local:1234
+        - purchase-server.dev.svc.cluster.local:1234
+        - vendor-dal.dev.svc.cluster.local:1234
+        - vendor-server.dev.svc.cluster.local:1234
+        
+```
+
+添加联邦同步job:
+
+```
+        - '{job="java_jmx_exporter"}'
 ```
 
 
@@ -153,3 +206,11 @@ rules:
 JVM dashboard-1608601338377.json
 
 tomcat-dashboard_rev10.json
+
+## 效果
+
+![image-20201222100158870](基于jmx和actuator监控java.assets/image-20201222100158870.png)
+
+![image-20201222100206106](基于jmx和actuator监控java.assets/image-20201222100206106.png)
+
+![image-20201222100228973](基于jmx和actuator监控java.assets/image-20201222100228973.png)
