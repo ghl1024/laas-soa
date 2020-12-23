@@ -150,6 +150,7 @@ rules:
 ```
 kubectl -n dev edit service purchase-server
 
+  ports:
   - name: http
     port: 80
     protocol: TCP
@@ -167,9 +168,10 @@ kubectl -n dev edit service purchase-server
 ```
 kubectl delete deployments/load-generator
 kubectl run -it --tty load-generator --image=busybox /bin/sh
-kubectl exec --stdin --tty load-generator-7fbcc7489f-v2m9s /bin/sh
+kubectl get pod |grep  load-generator
+kubectl exec --stdin --tty load-generator-7fbcc7489f-z49j5 /bin/sh
 
-wget http://purchase-server.dev.svc.cluster.local:1234
+wget http://report-admin.wjh-prod.svc.cluster.local:1234
 ```
 
 调整prometheus数据抓取点
