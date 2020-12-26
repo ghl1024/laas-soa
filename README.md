@@ -178,13 +178,3 @@ CD
 # 记录
 
 监控、优化、执行、监控
-
-# 交流
-
-QQ群: 1048078121
-
-![docs/communicate/QQ-LaaS-SOA-1群二维码.png](docs/communicate/QQ-LaaS-SOA-1群二维码.png)
-
-# 援助者
-
-感觉庆捷、鑫俊、小攀等人对本项目的精神援助, 为SOA项目的明确到落地提供了坚实的帮助
