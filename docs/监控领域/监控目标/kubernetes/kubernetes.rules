@@ -1,16 +1,8 @@
 groups:
   - name: kubernetes
     rules:
-      - alert: kubernetes-pod-状态
-        expr: kube_pod_container_status_restarts_total{namespace="wjh-prod"} > 1
-        for: 1m
-        labels:
-          status: 非常严重
-        annotations:
-          summary: "超标"
-          description: "kubernetes-pod-状态-重启次数过多 ({{$labels.namespace}}/{{$labels.container}}--{{$labels.pod}}) : {{$value}}"
       - alert: kubernetes-pod-资源-内存
-        expr: sum(container_memory_working_set_bytes{id!="/",container!=""}) by (namespace, pod,container) / sum(kube_pod_container_resource_limits_memory_bytes{id!="/",container!=""}) by (namespace, pod,container) > 0.9
+        expr: sum(container_memory_working_set_bytes{id!="/",container!~"POD|ilogtail|logtail|"}) by (namespace, pod,container) / sum(kube_pod_container_resource_limits_memory_bytes{id!="/",container!~"POD|ilogtail|logtail|"}) by (namespace, pod,container) > 0.8
         for: 1m
         labels:
           status: 非常严重

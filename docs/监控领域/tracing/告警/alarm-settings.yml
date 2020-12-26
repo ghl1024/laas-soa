@@ -1,12 +1,18 @@
 rules:
   endpoint_relation_resp_time_rule:
     metrics-name: endpoint_relation_resp_time
-    threshold: 10000
+    threshold: 5000
     op: ">"
     period: 10
     count: 2
-    message: 接口响应时间超过10秒({name})
-
+    message: 接口超时10秒  {name}
+  endpoint_relation_error_resp_time_rule:
+    metrics-name: endpoint_relation_error_resp_time
+    threshold: 1
+    op: ">"
+    period: 10
+    count: 2
+    message: 接口报错  {name} {responseCode}
 webhooks:
   - http://192.168.2.20:8060/dingtalk/webhook1/send
 

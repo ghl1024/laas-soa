@@ -185,6 +185,7 @@ kubectl -n kube-system get configmaps prometheus-config -o yaml > aliyun_prometh
 
 ```
     - job_name: 'java_jmx_exporter'
+      scrape_interval: 30s 
       metrics_path: '/'
       static_configs:
       - targets:
