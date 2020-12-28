@@ -14,7 +14,7 @@ curl http://192.168.2.15:9200
 docker pull justwatch/elasticsearch_exporter:1.1.0
 
 docker stop es_exporter && docker rm es_exporter
-docker run -d --name es_exporter -p 9114:9114 justwatch/elasticsearch_exporter:1.1.0 --es.uri=http://192.168.2.15:9200 --es.all --es.cluster_settings --es.indices --es.indices_settings --es.shards --es.snapshots
+docker run -d --name es_exporter --restart=always -p 9114:9114 justwatch/elasticsearch_exporter:1.1.0 --es.uri=http://192.168.2.15:9200 --es.all --es.cluster_settings --es.indices --es.indices_settings --es.shards --es.snapshots
 docker logs -f --tail 100 es_exporter
 ```
 

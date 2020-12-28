@@ -49,7 +49,7 @@ tail -f -n 100 logs/zookeeper-root-server-redis01.out
 docker stop zk_exporter
 docker rm   zk_exporter
 
-docker run -d --name zk_exporter -p 9141:9141 dabealu/zookeeper-exporter:v0.1.10 --zk-hosts="192.168.2.240:2181,192.168.3.100:2181,192.168.4.195:2181" --timeout=5
+docker run -d --name zk_exporter --restart=always -p 9141:9141 dabealu/zookeeper-exporter:v0.1.10 --zk-hosts="192.168.2.240:2181,192.168.3.100:2181,192.168.4.195:2181" --timeout=5
 
 docker logs -f --tail 100 zk_exporter
 ```

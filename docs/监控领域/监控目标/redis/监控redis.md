@@ -4,7 +4,7 @@
 docker stop redis_exporter
 docker rm   redis_exporter
 
-docker run -d --name redis_exporter -p 9121:9121 --env REDIS_ADDR=redis://192.168.3.100:7001 --env REDIS_EXPORTER_INCL_SYSTEM_METRICS=true oliver006/redis_exporter:v1.13.1 --debug
+docker run -d --name redis_exporter --restart=always -p 9121:9121 --env REDIS_ADDR=redis://192.168.3.100:7001 --env REDIS_EXPORTER_INCL_SYSTEM_METRICS=true oliver006/redis_exporter:v1.13.1 --debug
 
 docker logs -f --tail 100 redis_exporter
 ```
