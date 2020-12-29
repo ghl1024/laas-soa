@@ -1,4 +1,4 @@
-整体分为ui、oap、es 三部分组成
+###### 整体分为ui、oap、es 三部分组成
 
 192.168.2.20
 
@@ -85,6 +85,8 @@ docker logs -f --tail 100 oap
 
 
 ```
+请谨慎使用influxdb, 因为可能你驾驭不住这个存储
+
 docker run -d \
   --name=oap \
   --restart=always \
