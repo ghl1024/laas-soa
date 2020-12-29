@@ -75,12 +75,27 @@ docker run -d \
   -p 11800:11800 -p 12800:12800 \
   -v /etc/localtime:/etc/localtime \
   -v /data/tristan/skywalking/config:/skywalking/config \
-  -e SW_STORAGE=influxdb -e SW_STORAGE_INFLUXDB_URL=http://192.168.5.5:8086 \
+  -e SW_STORAGE=elasticsearch7 -e SW_STORAGE_ES_CLUSTER_NODES=192.168.5.5:9200 \
   apache/skywalking-oap-server:8.3.0-es7
 
 
 docker logs -f --tail 100 oap
 ```
+
+
+
+```
+docker run -d \
+  --name=oap \
+  --restart=always \
+  -p 11800:11800 -p 12800:12800 \
+  -v /etc/localtime:/etc/localtime \
+  -v /data/tristan/skywalking/config:/skywalking/config \
+  -e SW_STORAGE=influxdb -e SW_STORAGE_INFLUXDB_URL=http://192.168.5.5:8086 \
+  apache/skywalking-oap-server:8.3.0-es7
+```
+
+
 
 修改nginx中原来skywalking对内访问地址, 实现oap替换, 充分验证
 
