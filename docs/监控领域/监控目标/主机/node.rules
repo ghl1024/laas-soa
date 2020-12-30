@@ -47,7 +47,7 @@ groups:
           description: "流入网络带宽持续2分钟高于100M. RX带宽使用率{{$value}} ({{$labels.instance}}-{{$labels.nodename}})"
 
       - alert: 宿主机-TCP会话
-        expr: node_sockstat_TCP_alloc > 5000
+        expr: node_sockstat_TCP_alloc > 50000
         for: 1m
         labels:
           status: 严重告警
