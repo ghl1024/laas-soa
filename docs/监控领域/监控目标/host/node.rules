@@ -11,7 +11,7 @@ groups:
           description: "服务器延时超过5分钟 ({{$labels.instance}}-{{$labels.nodename}})"
 
       - alert: 宿主机-CPU
-        expr: 100-(avg(irate(node_cpu_seconds_total{mode="idle"}[5m])) by(instance)* 100) > 100
+        expr: 100-(avg(irate(node_cpu_seconds_total{mode="idle"}[5m])) by(instance)* 100) > 85
         for: 1m
         labels:
           status: 一般告警
