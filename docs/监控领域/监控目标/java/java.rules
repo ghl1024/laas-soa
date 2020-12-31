@@ -1,0 +1,11 @@
+groups:
+  - name: Java
+    rules:
+      - alert: Java-jvm-资源-heap
+        expr: max(jvm_memory_bytes_used{area="heap"}) by (job, instance)/max(jvm_memory_bytes_max{area="heap"}) by (job, instance) > 0.8
+        for: 5s
+        labels:
+          status: 非常严重
+        annotations:
+          summary: "超标"
+          description: "Java-jvm-资源-heap超标 ({{$labels.instance}}) : {{$value}}"

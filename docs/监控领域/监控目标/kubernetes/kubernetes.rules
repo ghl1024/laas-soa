@@ -17,3 +17,11 @@ groups:
         annotations:
           summary: "过低"
           description: "kubernetes-deployment-副本数为零 ({{$labels.namespace}}/{{$labels.deployment}}"
+      - alert: kubernetes-pod-状态
+        expr: kube_pod_container_status_running{container!="drain-node"} == 0
+        for: 1m
+        labels:
+          status: 非常严重
+        annotations:
+          summary: "异常"
+          description: "kubernetes-pod-状态-异常: {{ $labels.pod }}"

@@ -64,7 +64,7 @@ Max memory = [-Xmx] + [-XX:MaxPermSize] + number_of_threads * [-Xss]
 上面的公式大体得到了内存的占用，但是不是全部占用，网上有一些人做了一些试验，有两篇比较好的介绍文章:
 [https://plumbr.eu/blog/memory-leaks/why-does-my-java-process-consume-more-memory-than-xmx](https://plumbr.eu/blog/memory-leaks/why-does-my-java-process-consume-more-memory-than-xmx)
 和
-[http://trustmeiamadeveloper.com/2016/03/18/where-is-my-memory-java/](https://link.jianshu.com/?t=http://trustmeiamadeveloper.com/2016/03/18/where-is-my-memory-java/)
+[http://trustmeiamadeveloper.com/2016/03/18/where-is-my-memory-java/](http://trustmeiamadeveloper.com/2016/03/18/where-is-my-memory-java/)
 
 所以猜测在设置jvm启动参数的时候 `-Xmx`的这个值一般要小于docker限制内存数，个人觉得 `-Xmx`:`docker`的比例为 `4/5 - 3/4`，
 
