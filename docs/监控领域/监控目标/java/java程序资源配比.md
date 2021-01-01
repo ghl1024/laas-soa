@@ -25,6 +25,8 @@ max(code cache) = 130
 
 max(meta space) = 200
 
+max(compressed class space) = 20
+
 
 
 max(jvm stack) = 681+215 = 896
