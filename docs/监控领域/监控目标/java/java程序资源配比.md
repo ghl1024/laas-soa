@@ -1,44 +1,48 @@
 计算公式
 
 ```
-heap + noheap +  metaspace  + code cache  + compressed class space + 线程*Xss(XX:ThreadStackSize 默认1024kb)
-	 + 垃圾收集程序的占用内存
-	 + JIT优化程序的占用内存
-	 + 堆外分配: 外部引用jar包的内存, --agent skywalking  jmx_exporter, 反射类
-	 [+ JNI 调用]
+heap + noheap
+
+heap   = eden space + survivor space + old gen   
+noheap = metaspace + code cache  + compressed class space + 线程*Xss(XX:ThreadStackSize 默认1024kb)
 ```
 
 观察jvm情况
 
-拿值时需要向上取整
+拿值时需要向上取整: 取1024 或者 取双
 
-拿一个Heap max值, 假设为1024M
+--- heap
 
-拿一个noheap值, 假设为300M
+max(eden space) = 600
 
-拿一个metaspace值, 假设为200M
+max(survivor space) = 62
 
-拿一个code cache值, 假设为300M
+max(old gen) = 970
 
-拿一个compressed class space值, 假设为20M
+--- non heap
 
-拿一个线程数值, 假设为700*1024 = 700M
+max(code cache) = 130
 
-```
-通过执行以下指令查看
-java -XX:+PrintFlagsFinal -version |grep ThreadStackSize
-```
-
-1024*2 = 2048
-
-(2048 + 300 + 200 + 300 + 20 + 700) / 0.7 = 5097
+max(meta space) = 200
 
 
 
-设置时需要向上取双数
+max(jvm stack) = 681+215 = 896
 
-设置最小堆内存为1024
 
-设置最大堆内存为2048
 
-设置容器最大内存为5098
+600 + 62 + 970 = 1632
+
+1632/0.5 = 3264
+
+(130 + 200 + 896)/0.7 = 1752
+
+3264 + 1752= 5016
+
+
+
+设置最小堆内存为1632
+
+设置最大堆内存为3264
+
+设置容器最大内存为5016
