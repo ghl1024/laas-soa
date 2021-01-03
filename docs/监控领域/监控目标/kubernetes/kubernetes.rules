@@ -2,7 +2,7 @@ groups:
   - name: kubernetes
     rules:
       - alert: kubernetes-pod-资源-内存
-        expr: sum(container_memory_working_set_bytes{id!="/",container!~"POD|ilogtail|logtail|"}) by (namespace, pod,container) / sum(kube_pod_container_resource_limits_memory_bytes{id!="/",container!~"POD|ilogtail|logtail|"}) by (namespace, pod,container) > 0.8
+        expr: sum(container_memory_rss{id!="/",container!~"POD|ilogtail|logtail|"}) by (namespace, pod,container) / sum(container_spec_memory_limit_bytes{id!="/",container!~"POD|ilogtail|logtail|"}) by (namespace, pod,container) > 0.8
         for: 1m
         labels:
           status: 非常严重

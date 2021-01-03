@@ -13,9 +13,9 @@ noheap = metaspace + code cache  + compressed class space + 线程*Xss(XX:Thread
 
 --- heap
 
-max(eden space) = 600
+max(eden space) = 966
 
-max(survivor space) = 62
+max(survivor space) = 100
 
 max(old gen) = 970
 
