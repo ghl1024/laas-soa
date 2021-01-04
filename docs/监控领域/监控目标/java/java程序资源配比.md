@@ -3,13 +3,25 @@
 ```
 heap + noheap
 
-heap   = eden space + survivor space + old gen   
-noheap = metaspace + code cache  + compressed class space + 线程*Xss(XX:ThreadStackSize 默认1024kb)
+heap      = eden space + survivor space + old gen   
+noheap    = metaspace + code cache  + compressed class space
+jvm stack = 线程数*Xss(XX:ThreadStackSize 默认1024kb)
+gc本身     = 400m
 ```
+
+只要gc情况正常, 内存是不会溢出的
+
+观察gc time情况, 是否一直处于长时间gc, 是否有下降趋势
+
+
+
+
+
+
 
 观察jvm情况
 
-拿值时需要向上取整: 取1024 或者 取双
+
 
 --- heap
 
@@ -27,7 +39,7 @@ max(meta space) = 200
 
 max(compressed class space) = 20
 
-
+--- jvm stack
 
 max(jvm stack) = 681+215 = 896
 
