@@ -1,0 +1,30 @@
+select table_name, data_free + index_length as table_size from information_schema.tables 
+where table_schema = 'wms_7' 
+and  table_name in ('wms_picking_list_task', 'wms_picking_list_detail', 'wms_delivery_item',
+ 'wms_location', 'wms_picking_task_item_change_record', 'wms_print_record');
+
+
+
+select name, file_size from INFORMATION_SCHEMA.INNODB_TABLESPACES where 
+name in ('wms_7/wms_picking_list_task', 'wms_7/wms_picking_list_detail', 'wms_7/wms_delivery_item',
+, 'wms_7/wms_location', 'wms_7/wms_picking_task_item_change_record',
+ 'wms_7/wms_print_record');
+ 
+ 
+ 
+wms_delivery_item					853377024		1740636160
+wms_location						49152			278528
+wms_picking_list_detail				299974656		834666496
+wms_picking_list_task				492011520		1505755136
+wms_picking_task_item_change_record	16384			180224
+wms_print_record					67813376		255852544
+
+
+
+
+wms_7/wms_location	278528
+wms_7/wms_print_record	255852544
+wms_7/wms_picking_list_task	1505755136
+wms_7/wms_picking_list_detail	834666496
+wms_7/wms_delivery_item	1740636160
+wms_7/wms_picking_task_item_change_record	180224
