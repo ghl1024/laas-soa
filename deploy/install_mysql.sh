@@ -3,7 +3,7 @@ docker stop mymysql
 docker rm   mymysql
 
 echo "拉取docker镜像"
-docker pull mysql:5.7
+docker pull mysql:8.0.22
 
 echo "准备文件夹"
 rm -rf /data/tristan/mysql/data
@@ -28,7 +28,7 @@ docker run --name  mymysql -p 3306:3306 --restart=always --privileged=true \
     -e MYSQL_DATABASE=tristan \
     -e MYSQL_USER=tristan \
     -e MYSQL_PASSWORD=tristan123 \
-    -d mysql:5.7  \
+    -d mysql:8.0.22  \
     --character-set-server=utf8mb4  \
     --collation-server=utf8mb4_unicode_ci
 
@@ -37,4 +37,4 @@ docker ps|grep mymysql
 
 sleep 3;
 echo "查看日志"
-docker logs mymysql
+docker logs -f --tail 100 mymysql
