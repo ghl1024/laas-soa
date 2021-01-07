@@ -47,13 +47,13 @@ groups:
           description: "流入网络带宽持续2分钟高于100M. RX带宽使用率{{$value}} ({{$labels.instance}}-{{$labels.nodename}})"
 
       - alert: 宿主机-TCP会话
-        expr: node_sockstat_TCP_alloc > 50000
+        expr: node_netstat_Tcp_CurrEstab > 52428
         for: 1m
         labels:
           status: 严重告警
         annotations:
           summary: "过高"
-          description: "TCP_alloc过高, 该服务器上的连接使用过高(目前使用:{{$value}}) ({{$labels.instance}}-{{$labels.nodename}})"
+          description: "TCP_ESTABLISHED过高, 该服务器上的连接使用过高(目前使用:{{$value}}) ({{$labels.instance}}-{{$labels.nodename}})"
 
       - alert: 宿主机-磁盘
         expr: 100-(node_filesystem_free_bytes{fstype=~"ext4|xfs"}/node_filesystem_size_bytes {fstype=~"ext4|xfs"}*100) > 80
