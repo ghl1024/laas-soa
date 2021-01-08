@@ -14,17 +14,18 @@ spec:
         app: service_name
     spec:
       containers:
-      - command:
-        - -config.file=/etc/promtail/promtail-config.yaml -config.expand-env=true
+      - args:
+        - -config.file=/etc/promtail/promtail-config.yaml
+        - -config.expand-env=true
         image: grafana/promtail:2.1.0
         imagePullPolicy: Always
         name: promtail
         env:
-        - name: service
+        - name: SERVICE
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
-        - name: namespace
+        - name: NAMESPACE
           valueFrom:
             fieldRef:
               fieldPath: metadata.namespace
