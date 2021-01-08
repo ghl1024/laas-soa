@@ -1,3 +1,5 @@
+server:
+    disable: true
 positions:
     filename: /tmp/positions.yaml
 clients:
@@ -12,4 +14,4 @@ scrape_configs:
         __path__: /mnt/*/*/*.log
         hostname: ${HOSTNAME}
         namespace: ${NAMESPACE}
-        service: ${SERVICE}
+        service: ${SERVICE_NAME}

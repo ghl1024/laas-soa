@@ -21,7 +21,7 @@ spec:
         imagePullPolicy: Always
         name: promtail
         env:
-        - name: SERVICE
+        - name: SERVICE_NAME
           valueFrom:
             fieldRef:
               fieldPath: metadata.name
