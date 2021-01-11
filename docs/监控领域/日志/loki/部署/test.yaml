@@ -14,84 +14,82 @@ spec:
         app: service_name
     spec:
       containers:
-        - name: service_name
-          env:
-            - name: restart
-              value: restart_pod
-            - name: mxjvm
-              value: service_max_jvm
-            - name: msjvm
-              value: service_min_jvm
-          image: service_image
-          imagePullPolicy: Always
-          livenessProbe:
-            failureThreshold: 60
-            httpGet:
-              path: /ping
-              port: 80
-              scheme: HTTP
-            initialDelaySeconds: 10
-            periodSeconds: 5
-            successThreshold: 1
-            timeoutSeconds: 3
-          readinessProbe:
-            failureThreshold: 20
-            httpGet:
-              path: /ping
-              port: 80
-              scheme: HTTP
-            initialDelaySeconds: 20
-            periodSeconds: 5
-            successThreshold: 1
-            timeoutSeconds: 2
-          ports:
-            - containerPort: 80
-              protocol: TCP
-          resources:
-            limits:
-              cpu: 1
-              memory: service_memM
-            requests:
-              cpu: 250m
-              memory: 512M
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          volumeMounts:
-            - mountPath: /data/servicesLog/logs
-              name: logs-dir
-            - mountPath: /etc/localtime
-              name: date-config
-        - name: promtail
-          args:
-            - -config.file=/etc/promtail/promtail-config.yaml
-            - -config.expand-env=true
-          image: grafana/promtail:2.1.0
-          imagePullPolicy: Always
-          env:
-            - name: NAMESPACE
-              valueFrom:
-                fieldRef:
-                  fieldPath: metadata.namespace
-            - name: SERVICE_NAME
-              value: service_name
-          resources:
-            limits:
-              cpu: 1
-              memory: 100M
-            requests:
-              cpu: 250m
-              memory: 100M
-          terminationMessagePath: /dev/termination-log
-          terminationMessagePolicy: File
-          volumeMounts:
-            - mountPath: /etc/localtime
-              name: date-config
-            - mountPath: /mnt
-              name: logs-dir
-            - mountPath: /etc/promtail/promtail-config.yaml
-              name: promtail-config
-              readOnly: true
-              subPath: promtail-config.yaml
+      - name: promtail
+        args:
+          - -config.file=/etc/promtail/promtail-config.yaml
+          - -config.expand-env=true
+        image: grafana/promtail:2.1.0
+        imagePullPolicy: IfNotPresent
+        env:
+          - name: NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
+          - name: SERVICE_NAME
+            value: service_name
+        resources:
+          limits:
+            cpu: 100m
+            memory: 100M
+          requests:
+            cpu: 250m
+            memory: 100M
+        volumeMounts:
+          - mountPath: /etc/localtime
+            name: date-config
+          - mountPath: /mnt
+            name: logs-dir
+          - mountPath: /etc/promtail/promtail-config.yaml
+            name: promtail-config
+            readOnly: true
+            subPath: promtail-config.yaml
+      - name: service_name
+        env:
+          - name: restart
+            value: restart_pod
+          - name: mxjvm
+            value: service_max_jvm
+          - name: msjvm
+            value: service_min_jvm
+        image: service_image
+        imagePullPolicy: Always
+        livenessProbe:
+          failureThreshold: 60
+          httpGet:
+            path: /ping
+            port: 80
+            scheme: HTTP
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 3
+        readinessProbe:
+          failureThreshold: 20
+          httpGet:
+            path: /ping
+            port: 80
+            scheme: HTTP
+          initialDelaySeconds: 20
+          periodSeconds: 5
+          successThreshold: 1
+          timeoutSeconds: 2
+        ports:
+          - containerPort: 80
+            protocol: TCP
+        resources:
+          limits:
+            cpu: 1
+            memory: service_memM
+          requests:
+            cpu: 250m
+            memory: 512M
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+          - mountPath: /data/servicesLog/logs
+            name: logs-dir
+          - mountPath: /etc/localtime
+            name: date-config
       nodeSelector:
         dev: dev
       restartPolicy: Always
