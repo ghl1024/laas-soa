@@ -27,13 +27,6 @@ spec:
                 fieldPath: metadata.namespace
           - name: SERVICE_NAME
             value: service_name
-        resources:
-          limits:
-            cpu: 1
-            memory: 100M
-          requests:
-            cpu: 100m
-            memory: 100M
         volumeMounts:
           - mountPath: /etc/localtime
             name: date-config
