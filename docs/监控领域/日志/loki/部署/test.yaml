@@ -14,12 +14,12 @@ spec:
         app: service_name
     spec:
       containers:
-      - name: promtail
-        args:
+      - args:
           - -config.file=/etc/promtail/promtail-config.yaml
           - -config.expand-env=true
+        name: promtail
         image: grafana/promtail:2.1.0
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         env:
           - name: NAMESPACE
             valueFrom:
@@ -29,10 +29,10 @@ spec:
             value: service_name
         resources:
           limits:
-            cpu: 100m
+            cpu: 1
             memory: 100M
           requests:
-            cpu: 250m
+            cpu: 100m
             memory: 100M
         volumeMounts:
           - mountPath: /etc/localtime
@@ -43,14 +43,14 @@ spec:
             name: promtail-config
             readOnly: true
             subPath: promtail-config.yaml
-      - name: service_name
-        env:
+      - env:
           - name: restart
             value: restart_pod
           - name: mxjvm
             value: service_max_jvm
           - name: msjvm
             value: service_min_jvm
+        name: service_name
         image: service_image
         imagePullPolicy: Always
         livenessProbe:
